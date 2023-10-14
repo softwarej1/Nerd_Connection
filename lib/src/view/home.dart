@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class Home extends GetView<HomeController> {
   const Home({super.key});
@@ -56,13 +54,6 @@ class Home extends GetView<HomeController> {
           }
         },
       ),
-      onDaySelected: (selectedDay, focusedDay) {
-        controller.updateSelectedDay(selectedDay);
-        controller.updateFocusedDay(focusedDay);
-      },
-      selectedDayPredicate: (DateTime day) {
-        return isSameDay(controller.selectedDay.value, day);
-      },
     );
   }
 }
