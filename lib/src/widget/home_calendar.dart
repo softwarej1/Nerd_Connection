@@ -47,6 +47,11 @@ class _HomeCalendarState extends State<HomeCalendar> {
     );
   }
 
+  HeaderStyle customHeaderStyle = const HeaderStyle(
+    formatButtonVisible: false,
+    titleCentered: true,
+  );
+
   Widget _dayStyle({
     required DateTime date,
     Color? color,
@@ -80,6 +85,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
   Widget build(BuildContext context) {
     return TableCalendar(
       headerVisible: true,
+      headerStyle: customHeaderStyle,
       locale: 'ko_KR',
       firstDay: DateTime(DateTime.now().year, 1, 1),
       lastDay: DateTime(DateTime.now().year + 2, 1, 1),
