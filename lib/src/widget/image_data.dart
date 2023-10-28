@@ -16,6 +16,16 @@ class ImageData extends StatelessWidget {
 }
 
 class ImagePath {
-  static String get homeOn => 'assets/images/bottom_nav_home_on_icon.jpg';
-  static String get homeOff => 'assets/images/bottom_nav_home_off_icon.jpg';
+  static String get homeOn => 'assets/images/bottom_nav_home_on_icon.png';
+  static String get homeOff => 'assets/images/bottom_nav_home_off_icon.png';
+  static String get heartOn => 'assets/images/bottom_nav_heart_on_icon.png';
+  static String get heartOff => 'assets/images/bottom_nav_heart_off_icon.png';
+  static String get noteTextOn =>
+      'assets/images/bottom_nav_note_text_on_icon.png';
+  static String get noteTextOff =>
+      'assets/images/bottom_nav_note_text_off_icon.png';
+  static String get userAltOn =>
+      'assets/images/bottom_nav_user_alt_on_icon.png';
+  static String get userAltOff =>
+      'assets/images/bottom_nav_user_alt_off_icon.png';
 }

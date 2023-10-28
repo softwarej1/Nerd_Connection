@@ -33,12 +33,12 @@ class App extends GetView<BottomNavController> {
             activeIcon: ImageData(path: ImagePath.homeOn),
             label: 'home'),
         BottomNavigationBarItem(
-            icon: ImageData(path: ImagePath.homeOff),
-            activeIcon: ImageData(path: ImagePath.homeOn),
+            icon: ImageData(path: ImagePath.noteTextOff),
+            activeIcon: ImageData(path: ImagePath.noteTextOn),
             label: 'search'),
         BottomNavigationBarItem(
-            icon: ImageData(path: ImagePath.homeOff),
-            activeIcon: ImageData(path: ImagePath.homeOn),
+            icon: ImageData(path: ImagePath.userAltOff),
+            activeIcon: ImageData(path: ImagePath.userAltOn),
             label: 'upload'),
       ],
     );

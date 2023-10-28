@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/utils/data_utils.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:table_calendar/table_calendar.dart';
 
 class HomeCalendar extends StatefulWidget {
   final Function(PageController) onCalendarCreated;
-
   final DateTime focusMonth;
   const HomeCalendar({
     Key? key,
@@ -28,57 +25,9 @@ class _HomeCalendarState extends State<HomeCalendar> {
     super.initState();
   }
 
-  void update() => setState(() {});
-
   @override
   void didUpdateWidget(HomeCalendar oldWidget) {
     super.didUpdateWidget(oldWidget);
-  }
-
-  Widget _dowHeaderStyle({required String date, required Color color}) {
-    return Center(
-      child: SizedBox(
-        height: 30,
-        child: Text(
-          date,
-          style: GoogleFonts.notoSans(color: color, fontSize: 13),
-        ),
-      ),
-    );
-  }
-
-  HeaderStyle customHeaderStyle = const HeaderStyle(
-    formatButtonVisible: false,
-    titleCentered: true,
-  );
-
-  Widget _dayStyle({
-    required DateTime date,
-    Color? color,
-    bool isToday = false,
-    bool isSelected = false,
-  }) {
-    var backgroundColor = Colors.white;
-    if (isToday) backgroundColor = const Color(0xffbebfc7);
-    if (isSelected) backgroundColor = const Color(0xff4a69ea);
-    return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        shape: BoxShape.circle,
-      ),
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Center(
-            child: Text(
-              '${date.day}',
-              style: GoogleFonts.notoSans(
-                  color: isToday ? Colors.white : color, fontSize: 16),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   @override
@@ -133,7 +82,52 @@ class _HomeCalendarState extends State<HomeCalendar> {
       onFormatChanged: (format) {},
     );
   }
+
+  void update() => setState(() {});
+
+  Widget _dowHeaderStyle({required String date, required Color color}) {
+    return Center(
+      child: SizedBox(
+        height: 30,
+        child: Text(
+          date,
+          style: GoogleFonts.notoSans(color: color, fontSize: 13),
+        ),
+      ),
+    );
+  }
+
+  HeaderStyle customHeaderStyle = const HeaderStyle(
+    formatButtonVisible: false,
+    titleCentered: true,
+  );
+
+  Widget _dayStyle({
+    required DateTime date,
+    Color? color,
+    bool isToday = false,
+    bool isSelected = false,
+  }) {
+    var backgroundColor = Colors.white;
+    if (isToday) backgroundColor = const Color(0xffbebfc7);
+    if (isSelected) backgroundColor = const Color(0xff4a69ea);
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        shape: BoxShape.circle,
+      ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Center(
+            child: Text(
+              '${date.day}',
+              style: GoogleFonts.notoSans(
+                  color: isToday ? Colors.white : color, fontSize: 16),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-// 

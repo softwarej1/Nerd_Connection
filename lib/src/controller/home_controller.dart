@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_getx_palette_diary/src/binding/write_binding.dart';
+import 'package:flutter_getx_palette_diary/src/view/write.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -10,16 +12,18 @@ class HomeController extends GetxController {
   Rx<Size> calendarHeaderSize = Size.zero.obs;
 
   void onCalendarCreated(PageController pageController) {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      var calendarSizeData = getRenderBoxSize(calendarKey);
-      if (calendarSizeData != null) {
-        calendarSize(calendarSizeData);
-      }
-      var calendarHeaderSizeData = getRenderBoxSize(calendarHeaderKey);
-      if (calendarHeaderSizeData != null) {
-        calendarHeaderSize(calendarHeaderSizeData);
-      }
-    });
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) {
+        var calendarSizeData = getRenderBoxSize(calendarKey);
+        if (calendarSizeData != null) {
+          calendarSize(calendarSizeData);
+        }
+        var calendarHeaderSizeData = getRenderBoxSize(calendarHeaderKey);
+        if (calendarHeaderSizeData != null) {
+          calendarHeaderSize(calendarHeaderSizeData);
+        }
+      },
+    );
   }
 
   Size? getRenderBoxSize(GlobalKey key) {
@@ -29,5 +33,9 @@ class HomeController extends GetxController {
       return Size(0, renderBox.size.height + translation.y + 20);
     }
     return null;
+  }
+
+  void handleFabPress() {
+    Get.to(() => const Write(), binding: WriteBinding());
   }
 }
