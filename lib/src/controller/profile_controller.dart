@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_getx_palette_diary/src/view/Profile_Modify.dart';
+import 'package:flutter_getx_palette_diary/src/view/profile_modify.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
