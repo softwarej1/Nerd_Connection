@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const App(),
       initialBinding: InitBinding(),
+      debugShowCheckedModeBanner: false, // Debug 배너 없애기
     );
   }
 }
