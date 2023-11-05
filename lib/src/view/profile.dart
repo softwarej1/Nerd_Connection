@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/controller/profile_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:get/get.dart';
 
-class Profile extends GetView<ProfileController> {
+class Profile extends GetView<HomeController> {
   const Profile({super.key});
 
   @override
