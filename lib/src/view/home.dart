@@ -13,7 +13,13 @@ class Home extends GetView<HomeController> {
       () => Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('PALETTE'),
+          title: const Text(
+            'PALETTE',
+            style: TextStyle(
+              fontFamily: 'NanumGothic',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: _body(),
         floatingActionButton: HomeFab(onPressed: controller.handleFabPress),
