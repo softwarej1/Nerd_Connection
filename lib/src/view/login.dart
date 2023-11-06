@@ -42,6 +42,7 @@ class Login extends GetView<LoginController> {
           child: LoginTextField(
             height: 50,
             controller: controller.email,
+            type: TextInputType.emailAddress,
             obscure: false,
             hintText: '로그인',
           ),
@@ -50,8 +51,9 @@ class Login extends GetView<LoginController> {
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
           child: LoginTextField(
             height: 50,
-            controller: controller.email,
-            obscure: false,
+            controller: controller.password,
+            type: TextInputType.text,
+            obscure: true,
             hintText: '비밀번호',
           ),
         ),
@@ -64,7 +66,7 @@ class Login extends GetView<LoginController> {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
       child: LoginButton(
         height: 50.0,
-        onPressed: controller.moveToRegister,
+        onPressed: controller.moveToApp,
         text: '로그인',
         gradient: const LinearGradient(
           begin: Alignment.centerLeft,
