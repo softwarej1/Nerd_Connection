@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/app.dart';
-import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
+import 'package:flutter_getx_palette_diary/src/binding/login_binding.dart';
+import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -21,10 +21,12 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
+          elevation: 0.0,
         ),
       ),
-      home: const App(),
-      initialBinding: InitBinding(),
+      home: const Login(),
+      initialBinding: LoginBinding(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
