@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/login_controller.dart';
+import 'package:flutter_getx_palette_diary/src/domain/user/user_repository.dart';
 import 'package:flutter_getx_palette_diary/src/widget/image_data.dart';
 import 'package:flutter_getx_palette_diary/src/widget/login_button.dart';
 import 'package:flutter_getx_palette_diary/src/widget/login_textfield.dart';
@@ -66,7 +67,10 @@ class Login extends GetView<LoginController> {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
       child: LoginButton(
         height: 50.0,
-        onPressed: controller.moveToApp,
+        onPressed: () {
+          UserRepository u = UserRepository();
+          u.login("ssar", "1234");
+        }, // controller.moveToApp,
         text: '로그인',
         gradient: const LinearGradient(
           begin: Alignment.centerLeft,
