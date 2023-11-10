@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/controller/dto/user_controller.dart';
 import 'package:flutter_getx_palette_diary/src/controller/login_controller.dart';
 import 'package:flutter_getx_palette_diary/src/domain/user/user_repository.dart';
 import 'package:flutter_getx_palette_diary/src/widget/image_data.dart';
@@ -7,8 +8,9 @@ import 'package:flutter_getx_palette_diary/src/widget/login_textfield.dart';
 import 'package:get/get.dart';
 
 class Login extends GetView<LoginController> {
-  const Login({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
 
+  UserController u = Get.put(UserController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +70,6 @@ class Login extends GetView<LoginController> {
       child: LoginButton(
         height: 50.0,
         onPressed: () {
-          UserRepository u = UserRepository();
           u.login("ssar", "1234");
         }, // controller.moveToApp,
         text: '로그인',

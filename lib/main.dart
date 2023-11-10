@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: const Login(),
+      home: Login(),
       initialBinding: LoginBinding(),
       debugShowCheckedModeBanner: false,
     );

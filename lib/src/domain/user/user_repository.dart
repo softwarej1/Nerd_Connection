@@ -7,13 +7,12 @@ import 'package:get/get_connect/http/src/response/response.dart';
 class UserRepository {
   final UserProvider _userProvider = UserProvider();
 
-  Future<void> login(String username, String password) async {
+  Future<String> login(String username, String password) async {
     LoginReqDto loginReqDto = LoginReqDto(username, password);
-
+    print(loginReqDto.toJson());
     Response response = await _userProvider.login(loginReqDto.toJson());
-
-    print("------------");
-    print(response);
-    print("------------");
+    dynamic headers = response.headers;
+    String token = headers["authoriation"];
+    return token;
   }
 }
