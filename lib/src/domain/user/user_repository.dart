@@ -10,9 +10,11 @@ class UserRepository {
   Future<String> login(String username, String password) async {
     LoginReqDto loginReqDto = LoginReqDto(username, password);
     print(loginReqDto.toJson());
+
     Response response = await _userProvider.login(loginReqDto.toJson());
-    dynamic headers = response.headers;
-    String token = headers["authoriation"];
+    //dynamic headers = response.headers;
+
+    String token = response.body["accessToken"];
     return token;
   }
 }
