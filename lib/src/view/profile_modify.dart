@@ -25,11 +25,13 @@ class ProfileModify extends GetView<HomeController> {
   }
 
   Widget _body() {
-    return Column(
-      children: [
-        profileImageEditor(),
-        userProfileEditor(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          profileImageEditor(),
+          userProfileEditor(),
+        ],
+      ),
     );
   }
 
@@ -97,7 +99,7 @@ class ProfileModify extends GetView<HomeController> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: TextFormField(
-            decoration: const InputDecoration(labelText: 'Email'),
+            decoration: const InputDecoration(labelText: 'id'),
             textAlign: TextAlign.left,
           ),
         ),

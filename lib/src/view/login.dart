@@ -10,6 +10,7 @@ class Login extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.initScreenWidth(context);
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -28,9 +29,12 @@ class Login extends GetView<LoginController> {
   }
 
   Widget _loginText() {
-    return ImageData(
-      path: ImagePath.loginImage,
-      width: 300,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: controller.screenHeight * 0.04),
+      child: ImageData(
+        path: ImagePath.loginImage,
+        width: controller.screenWidth * 0.8,
+      ),
     );
   }
 
@@ -38,9 +42,10 @@ class Login extends GetView<LoginController> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+          padding:
+              EdgeInsets.symmetric(horizontal: controller.screenWidth * 0.05),
           child: LoginTextField(
-            height: 50,
+            height: controller.screenHeight * 0.1,
             controller: controller.email,
             type: TextInputType.emailAddress,
             obscure: false,
@@ -48,9 +53,10 @@ class Login extends GetView<LoginController> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+          padding:
+              EdgeInsets.symmetric(horizontal: controller.screenWidth * 0.05),
           child: LoginTextField(
-            height: 50,
+            height: controller.screenHeight * 0.1,
             controller: controller.password,
             type: TextInputType.text,
             obscure: true,
@@ -63,9 +69,11 @@ class Login extends GetView<LoginController> {
 
   Widget _loginButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+      padding: EdgeInsets.symmetric(
+          vertical: controller.screenHeight * 0.005,
+          horizontal: controller.screenWidth * 0.05),
       child: LoginButton(
-        height: 50.0,
+        height: controller.screenWidth * 0.12,
         onPressed: controller.moveToApp,
         text: '로그인',
         gradient: const LinearGradient(
@@ -83,9 +91,11 @@ class Login extends GetView<LoginController> {
 
   Widget _signupButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+      padding: EdgeInsets.symmetric(
+          vertical: controller.screenHeight * 0.005,
+          horizontal: controller.screenWidth * 0.05),
       child: LoginButton(
-        height: 50.0,
+        height: controller.screenWidth * 0.12,
         onPressed: controller.moveToRegister,
         text: '회원가입',
         gradient: const LinearGradient(

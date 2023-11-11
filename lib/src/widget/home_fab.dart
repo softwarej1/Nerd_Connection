@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeFab extends StatelessWidget {
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
   const HomeFab({super.key, required this.onPressed});
 
   @override
