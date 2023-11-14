@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
 import 'package:flutter_getx_palette_diary/src/binding/login_binding.dart';
 import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:get/get.dart';
@@ -24,8 +25,8 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: Login(),
-      initialBinding: LoginBinding(),
+      home: LoginPage(),
+      initialBinding: InitBinding(),
       debugShowCheckedModeBanner: false,
     );
   }

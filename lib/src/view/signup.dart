@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/signup_textfield.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -15,19 +17,19 @@ class SignUp extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               height: 200,
-              child: Text(
+              child: const Text(
                 '회원가입',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            _Form()
+            _SignUpForm()
           ],
         ),
       ),
     );
   }
 
-  Widget _Form() {
+  Widget _SignUpForm() {
     return Form(
         child: Column(
       children: [
@@ -37,6 +39,7 @@ class SignUp extends StatelessWidget {
         CustomTextField(hint: "비밀번호 확인"),
         CustomElevatedButton(
           text: "회원가입",
+          MoveToPage: () => Get.to(LoginPage()),
         ),
       ],
     ));

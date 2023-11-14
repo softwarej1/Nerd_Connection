@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextField(
+        obscureText: hint == "비밀번호" ? true : false,
         decoration: InputDecoration(
             hintText: "$hint",
             enabledBorder: OutlineInputBorder(
