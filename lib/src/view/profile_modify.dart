@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/profile_controller.dart';
 import 'package:flutter_getx_palette_diary/src/widget/modify_pfp.dart';
+import 'package:flutter_getx_palette_diary/src/widget/profile_m_body.dart';
 import 'package:get/get.dart';
 
 class ProfileModify extends GetView<ProfileController> {
@@ -48,39 +49,6 @@ class ProfileModify extends GetView<ProfileController> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ModifyBody extends StatelessWidget {
-  const ModifyBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: TextFormField(
-            decoration: const InputDecoration(labelText: 'Password'),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: TextFormField(
-            decoration: const InputDecoration(labelText: 'Email'),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: TextFormField(
-            decoration: const InputDecoration(labelText: 'Phone'),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ],
     );
   }
 }
