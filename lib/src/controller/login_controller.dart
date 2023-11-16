@@ -11,7 +11,7 @@ class LoginController extends GetxController {
   TextEditingController get password => _password;
 
   void moveToRegister() {
-    Get.to(() => const SignUp());
+    Get.to(() => SignUp());
   }
 
   void moveToApp() {

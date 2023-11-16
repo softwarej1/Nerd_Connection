@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final String text;
-  final MoveToPage;
+  final funMoveToPage;
 
-  CustomElevatedButton({required this.text, required this.MoveToPage});
+  CustomElevatedButton({required this.text, required this.funMoveToPage});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
-        onPressed: MoveToPage,
+        onPressed: funMoveToPage,
         child: Text("$text"));
   }
 }
