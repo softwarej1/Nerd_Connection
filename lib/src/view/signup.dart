@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/signup_textfield.dart';
 import 'package:get/get.dart';
+import 'package:validators/validators.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +33,36 @@ class SignUp extends StatelessWidget {
 
   Widget _SignUpForm() {
     return Form(
+        key: _formkey,
         child: Column(
-      children: [
-        CustomTextField(hint: "이름"),
-        CustomTextField(hint: "아이디"),
-        CustomTextField(hint: "비밀번호"),
-        CustomTextField(hint: "비밀번호 확인"),
-        CustomElevatedButton(
-          text: "회원가입",
-          MoveToPage: () => Get.to(LoginPage()),
-        ),
-      ],
-    ));
+          children: [
+            CustomTextField(
+              hint: "이름",
+              funValidator: validateName(),
+            ),
+            CustomTextField(hint: "이메일", funValidator: validateEmail()),
+            CustomTextField(
+              hint: "비밀번호",
+              funValidator: validatePassword(),
+            ),
+            CustomTextField(
+              hint: "비밀번호 확인",
+              funValidator: validateConfirmPassword(),
+            ),
+            CustomElevatedButton(
+              text: "회원가입",
+              funMoveToPage: () {
+                if (_formkey.currentState!.validate()) {
+                  Get.to(LoginPage());
+                }
+              },
+            ),
+            TextButton(
+                onPressed: () {
+                  Get.to(LoginPage());
+                },
+                child: Text("로그인 페이지로 이동"))
+          ],
+        ));
   }
 }
