@@ -45,23 +45,31 @@ class ProfileBox extends StatelessWidget {
                       ),
               );
             }),
-            const SizedBox(width: 20.0),
+            const SizedBox(width: 20.0), // 위젯 배치 깨지는 문제로 유지
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Information',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 15.0),
+                  child: Text(
+                    'Information',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                SizedBox(height: 30.0),
-                Text(
-                  '▪ 이름 : 유저 이름',
-                  style: TextStyle(fontSize: 20.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15.0),
+                  child: Text(
+                    '▪ 이름 : 유저 이름',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                 ),
-                SizedBox(height: 20.0),
-                Text(
-                  '▪ Email : email@email.com',
-                  style: TextStyle(fontSize: 20.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    '▪ Email : email@email.com',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                 ),
               ],
             ),

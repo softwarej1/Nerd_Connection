@@ -17,9 +17,9 @@ class ProfileInformation extends StatelessWidget {
             '내 정보',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
           ),
-          const SizedBox(height: 10.0),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
             child: GestureDetector(
               onTap: () {
                 controller.pfmgo();

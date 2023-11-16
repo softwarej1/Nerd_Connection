@@ -10,6 +10,7 @@ class ModifyBody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: TextFormField(
+            obscureText: true, // 비밀번호 * 처리
             decoration: const InputDecoration(labelText: 'Password'),
             textAlign: TextAlign.left,
           ),
