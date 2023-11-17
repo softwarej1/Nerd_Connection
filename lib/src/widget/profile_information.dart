@@ -22,7 +22,7 @@ class ProfileInformation extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
             child: GestureDetector(
               onTap: () {
-                controller.pfmgo();
+                controller.pfmgo(controller);
               },
               child: const Text(
                 '내 프로필 수정하기',
