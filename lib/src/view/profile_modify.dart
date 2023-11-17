@@ -70,7 +70,18 @@ class ProfileModify extends GetView<ProfileController> {
                             ),
                           ),
                   ),
-                  _username(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: SizedBox(
+                      // 위젯 배치 깨지는 문제로 유지
+                      width: 150.0,
+                      child: TextFormField(
+                        // 텍스트 폼 필드 소연이가 만든거로 불러오는게 나을듯
+                        textAlign: TextAlign.center,
+                        initialValue: '기존 이름',
+                      ),
+                    ),
+                  ),
                 ],
               );
             },
@@ -81,18 +92,7 @@ class ProfileModify extends GetView<ProfileController> {
   }
 
   Widget _username() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: SizedBox(
-        // 위젯 배치 깨지는 문제로 유지
-        width: 150.0,
-        child: TextFormField(
-          // 텍스트 폼 필드 소연이가 만든거로 불러오는게 나을듯
-          textAlign: TextAlign.center,
-          initialValue: '기존 이름',
-        ),
-      ),
-    );
+    return;
   }
 
   Widget _userinfor(BuildContext context) {
