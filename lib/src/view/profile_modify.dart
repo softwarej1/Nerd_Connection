@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/profile_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/profile_overlay.dart';
-import 'package:flutter_getx_palette_diary/src/widget/profile_m_body.dart';
 import 'package:get/get.dart';
 
 class ProfileModify extends GetView<ProfileController> {
@@ -32,48 +31,51 @@ class ProfileModify extends GetView<ProfileController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  showOverlay(context);
-                },
-                child: Obx(
-                  () {
-                    return Column(
-                      children: [
-                        ClipOval(
-                          child: controller.profileImagePath.value.isNotEmpty
-                              ? Image.file(
-                                  File(controller.profileImagePath.value),
-                                  width: 120.0,
-                                  height: 120.0,
-                                  fit: BoxFit.cover,
-                                )
-                              : Container(
-                                  color: Colors.grey,
-                                  width: 120.0,
-                                  height: 120,
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                        ),
-                        _username(),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-          const ModifyBody(),
-          _userintro(),
+          _profileImage(context),
+          _userinfor(context),
         ],
+      ),
+    );
+  }
+
+  Widget _profileImage(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            showOverlay(context);
+          },
+          child: Obx(
+            () {
+              return Column(
+                children: [
+                  ClipOval(
+                    child: controller.profileImagePath.value.isNotEmpty
+                        ? Image.file(
+                            File(controller.profileImagePath.value),
+                            width: 120.0,
+                            height: 120.0,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(
+                            color: Colors.grey,
+                            width: 120.0,
+                            height: 120,
+                            child: const Center(
+                              child: Icon(
+                                Icons.camera_alt,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                  ),
+                  _username(),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }
@@ -90,6 +92,35 @@ class ProfileModify extends GetView<ProfileController> {
           initialValue: '기존 이름',
         ),
       ),
+    );
+  }
+
+  Widget _userinfor(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child: TextFormField(
+            obscureText: true, // 비밀번호 * 처리
+            decoration: const InputDecoration(labelText: 'Password'),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child: TextFormField(
+            decoration: const InputDecoration(labelText: 'Email'),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child: TextFormField(
+            decoration: const InputDecoration(labelText: 'Phone'),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
     );
   }
 
