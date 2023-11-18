@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/controller/profile_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/profile_overlay.dart';
 import 'package:get/get.dart';
 
-class ProfileModify extends GetView<ProfileController> {
+class ProfileModify extends GetView<HomeController> {
   @override
-  final ProfileController controller;
+  final HomeController controller;
   const ProfileModify(this.controller, {super.key});
 
   @override
