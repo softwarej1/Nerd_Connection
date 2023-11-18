@@ -72,6 +72,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
           date: date,
           color: TodoDataUtils.dayToColor(date),
           isToday: false,
+          imagePath: TodoDataUtils.getImagePathForDate(date),
         ),
         outsideBuilder: (context, date, _) => _dayStyle(
           date: date,
@@ -107,6 +108,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
     Color? color,
     bool isToday = false,
     bool isSelected = false,
+    String? imagePath,
   }) {
     var backgroundColor = Colors.white;
     if (isToday) backgroundColor = const Color(0xffbebfc7);
@@ -119,6 +121,14 @@ class _HomeCalendarState extends State<HomeCalendar> {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
+          Positioned.fill(
+            child: imagePath != null
+                ? Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  )
+                : Container(),
+          ),
           Center(
             child: Text(
               '${date.day}',

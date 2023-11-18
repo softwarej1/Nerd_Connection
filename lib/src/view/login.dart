@@ -12,7 +12,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.initScreenWidth(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +31,6 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _LoginForm() {
     return Form(
@@ -60,8 +58,6 @@ class LoginPage extends StatelessWidget {
                   Get.to(SignUp());
                 },
                 child: Text("회원가입 하시겠습니까?"))
-
-
           ],
         ));
   }
