@@ -8,9 +8,11 @@ class ProfileController extends GetxController {
   var profileImagePath = ''.obs;
   Rx<File?> selectedImage = Rx<File?>(null);
   final picker = ImagePicker();
+  // _profileImage에서 설정되어있는지
+  bool get isProfileImageSet => profileImagePath.value.isNotEmpty;
 
-  void pfmgo() {
-    Get.to(() => const ProfileModify());
+  void pfmgo(ProfileController controller) {
+    Get.to(() => ProfileModify(controller));
   }
 
   Future<void> pickImage() async {
@@ -19,7 +21,7 @@ class ProfileController extends GetxController {
     if (pickedFile != null) {
       profileImagePath.value = pickedFile.path;
     } else {
-      print('사진을 서택하지 않았습니다.');
+      // print('사진을 서택하지 않았습니다.');
     }
   }
 }
