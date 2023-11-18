@@ -8,11 +8,14 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isPassword = hint.contains('비밀번호');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
         validator: funValidator,
-        obscureText: hint == "비밀번호" ? true : false,
+        obscureText: isPassword,
+        //hint == "비밀번호" ? true : false,
+
         decoration: InputDecoration(
             hintText: "$hint",
             enabledBorder: OutlineInputBorder(
