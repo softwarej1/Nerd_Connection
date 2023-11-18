@@ -22,7 +22,10 @@ class LoginPage extends StatelessWidget {
               height: 200,
               child: const Text(
                 '로그인',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color.fromARGB(255, 129, 132, 211),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             _LoginForm(),
@@ -54,10 +57,14 @@ class LoginPage extends StatelessWidget {
               },
             ),
             TextButton(
-                onPressed: () {
-                  Get.to(SignUp());
-                },
-                child: Text("회원가입 하시겠습니까?"))
+              onPressed: () {
+                Get.to(SignUp());
+              },
+              child: Text("회원가입 하시겠습니까?",
+                  style: TextStyle(
+                    color: Colors.black,
+                  )),
+            )
           ],
         ));
   }

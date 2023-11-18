@@ -11,6 +11,12 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Get.to(LoginPage());
+              })),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -20,7 +26,10 @@ class SignUp extends StatelessWidget {
               height: 200,
               child: const Text(
                 '회원가입',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color.fromARGB(255, 129, 132, 211),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             _SignUpForm()
@@ -56,11 +65,6 @@ class SignUp extends StatelessWidget {
                 }
               },
             ),
-            TextButton(
-                onPressed: () {
-                  Get.to(LoginPage());
-                },
-                child: Text("로그인 페이지로 이동"))
           ],
         ));
   }
