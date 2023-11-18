@@ -7,7 +7,13 @@ class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PALETTE'),
+        title: const Text(
+          'PALETTE',
+          style: TextStyle(
+            fontFamily: 'NanumGothic',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
       ),
       body: _myFeed(),

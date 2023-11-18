@@ -28,4 +28,5 @@ class ImagePath {
       'assets/images/bottom_nav_user_alt_on_icon.png';
   static String get userAltOff =>
       'assets/images/bottom_nav_user_alt_off_icon.png';
+  static String get loginImage => 'assets/images/login_image.png';
 }

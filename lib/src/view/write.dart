@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/controller/write_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/widget/write_textfild.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:get/get.dart';
 
-class Write extends GetView<WriteController> {
+class Write extends GetView<HomeController> {
   const Write({super.key});
 
   @override
@@ -35,12 +35,12 @@ class Write extends GetView<WriteController> {
   }
 
   Widget _image() {
-    return (controller.selectedImage != null)
+    return (controller.writeSelectedImage != null)
         ? SizedBox(
             height: 200,
             width: Get.size.width,
             child: AssetEntityImage(
-              controller.selectedImage!,
+              controller.writeSelectedImage!,
               isOriginal: false,
               fit: BoxFit.contain,
             ),
