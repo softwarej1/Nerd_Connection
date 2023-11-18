@@ -8,6 +8,8 @@ class ProfileController extends GetxController {
   var profileImagePath = ''.obs;
   Rx<File?> selectedImage = Rx<File?>(null);
   final picker = ImagePicker();
+  // _profileImage에서 설정되어있는지
+  bool get isProfileImageSet => profileImagePath.value.isNotEmpty;
 
   void pfmgo(ProfileController controller) {
     Get.to(() => ProfileModify(controller));

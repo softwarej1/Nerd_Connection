@@ -51,7 +51,7 @@ class ProfileModify extends GetView<ProfileController> {
               return Column(
                 children: [
                   ClipOval(
-                    child: controller.profileImagePath.value.isNotEmpty
+                    child: controller.isProfileImageSet
                         ? Image.file(
                             File(controller.profileImagePath.value),
                             width: 120.0,
@@ -89,10 +89,6 @@ class ProfileModify extends GetView<ProfileController> {
         ),
       ),
     );
-  }
-
-  Widget _username() {
-    return;
   }
 
   Widget _userinfor(BuildContext context) {

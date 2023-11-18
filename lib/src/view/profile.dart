@@ -30,14 +30,18 @@ class Profile extends GetView<ProfileController> {
       children: [
         ProfileBox(controller: controller),
         ProfileInformation(controller: controller),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
-          child: Divider(
-            color: Color.fromARGB(108, 0, 0, 0),
-            thickness: 1.0,
-          ),
-        ),
+        _driver(),
       ],
+    );
+  }
+
+  Widget _driver() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      child: Divider(
+        color: Color.fromARGB(108, 0, 0, 0),
+        thickness: 1.0,
+      ),
     );
   }
 }
