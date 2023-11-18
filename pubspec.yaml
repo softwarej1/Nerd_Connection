@@ -42,6 +42,7 @@ dependencies:
   google_fonts: ^6.1.0
   photo_manager: ^2.7.2
   image_picker: ^1.0.4
+  validators: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -17,11 +17,11 @@ class BottomNavController extends GetxController {
       case Page.HOME:
       case Page.SEARCH:
       case Page.UPLOAD:
-        moveToPage(value);
+        MoveToPage(value);
     }
   }
 
-  void moveToPage(int value) {
+  void MoveToPage(int value) {
     if (_history.last != value && Platform.isAndroid) {
       _history.add(value);
       print(_history);

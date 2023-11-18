@@ -66,7 +66,7 @@ class HomeController extends GetxController {
     if (pickedFile != null) {
       profileImagePath.value = pickedFile.path;
     } else {
-      print('사진을 서택하지 않았습니다.');
+      print('사진을 선택하지 않았습니다.');
     }
   }
 }
