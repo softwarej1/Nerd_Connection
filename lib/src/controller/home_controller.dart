@@ -15,6 +15,9 @@ class HomeController extends GetxController {
   GlobalKey calendarKey = GlobalKey();
   GlobalKey calendarHeaderKey = GlobalKey();
   Rx<Size> calendarHeaderSize = Size.zero.obs;
+  //calendar card
+  RxBool isDateSelected = false.obs;
+  Rx<DateTime?> selectedDay = Rx<DateTime?>(null);
   //profile
   var profileImagePath = ''.obs;
   Rx<File?> profileSelectedImage = Rx<File?>(null);

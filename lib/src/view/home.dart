@@ -31,6 +31,7 @@ class Home extends GetView<HomeController> {
     return Column(
       children: [
         _calendalWidget(),
+        _cardWidget(),
       ],
     );
   }
@@ -42,6 +43,21 @@ class Home extends GetView<HomeController> {
       child: HomeCalendar(
         focusMonth: controller.headerDate.value,
         onCalendarCreated: controller.onCalendarCreated,
+      ),
+    );
+  }
+
+  Widget _cardWidget() {
+    DateTime? selectedDate = controller.selectedDay.value;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: controller.isDateSelected.value ? 100 : 0,
+      color: Colors.blue,
+      child: Center(
+        child: Text(
+          'Selected Date: ${selectedDate?.toLocal()}',
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

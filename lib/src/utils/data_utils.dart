@@ -85,7 +85,7 @@ class TodoDataUtils {
       case 2:
         return 'assets/images/bottom_nav_home_off_icon.png';
       default:
-        return 'assets/images/bottom_nav_home_on_icon.png';
+        return null;
     }
     return null;
   }

@@ -13,7 +13,7 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Get.to(LoginPage());
               })),
@@ -41,31 +41,32 @@ class SignUp extends StatelessWidget {
 
   Widget _SignUpForm() {
     return Form(
-        key: _formkey,
-        child: Column(
-          children: [
-            CustomTextField(
-              hint: "이름",
-              funValidator: validateName(),
-            ),
-            CustomTextField(hint: "이메일", funValidator: validateEmail()),
-            CustomTextField(
-              hint: "비밀번호",
-              funValidator: validatePassword(),
-            ),
-            CustomTextField(
-              hint: "비밀번호 확인",
-              funValidator: validateConfirmPassword(),
-            ),
-            CustomElevatedButton(
-              text: "회원가입",
-              funMoveToPage: () {
-                if (_formkey.currentState!.validate()) {
-                  Get.to(LoginPage());
-                }
-              },
-            ),
-          ],
-        ));
+      key: _formkey,
+      child: Column(
+        children: [
+          CustomTextField(
+            hint: "이름",
+            funValidator: validateName(),
+          ),
+          CustomTextField(hint: "이메일", funValidator: validateEmail()),
+          CustomTextField(
+            hint: "비밀번호",
+            funValidator: validatePassword(),
+          ),
+          CustomTextField(
+            hint: "비밀번호 확인",
+            funValidator: validateConfirmPassword(),
+          ),
+          CustomElevatedButton(
+            text: "회원가입",
+            funMoveToPage: () {
+              if (_formkey.currentState!.validate()) {
+                Get.to(LoginPage());
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
