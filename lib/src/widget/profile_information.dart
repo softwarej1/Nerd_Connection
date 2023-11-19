@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/controller/profile_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 
 class ProfileInformation extends StatelessWidget {
-  final ProfileController controller;
+  final HomeController controller;
   const ProfileInformation({Key? key, required this.controller})
       : super(key: key);
 
