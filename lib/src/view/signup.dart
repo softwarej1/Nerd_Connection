@@ -4,7 +4,6 @@ import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/signup_textfield.dart';
 import 'package:get/get.dart';
-import 'package:validators/validators.dart';
 
 class SignUp extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
@@ -14,9 +13,9 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Get.to(LoginPage());
+                Get.to(Login());
               })),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -43,30 +42,32 @@ class SignUp extends StatelessWidget {
   Widget _SignUpForm() {
     return Form(
         key: _formkey,
-        child: Column(
-          children: [
-            CustomTextField(
-              hint: "이름",
-              funValidator: validateName(),
-            ),
-            CustomTextField(hint: "이메일", funValidator: validateEmail()),
-            CustomTextField(
-              hint: "비밀번호",
-              funValidator: validatePassword(),
-            ),
-            CustomTextField(
-              hint: "비밀번호 확인",
-              funValidator: validateConfirmPassword(),
-            ),
-            CustomElevatedButton(
-              text: "회원가입",
-              funMoveToPage: () {
-                if (_formkey.currentState!.validate()) {
-                  Get.to(LoginPage());
-                }
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextField(
+                hint: "이름",
+                funValidator: validateName(),
+              ),
+              CustomTextField(hint: "이메일", funValidator: validateEmail()),
+              CustomTextField(
+                hint: "비밀번호",
+                funValidator: validatePassword(),
+              ),
+              CustomTextField(
+                hint: "비밀번호 확인",
+                funValidator: validateConfirmPassword(),
+              ),
+              CustomElevatedButton(
+                text: "회원가입",
+                funMoveToPage: () {
+                  if (_formkey.currentState!.validate()) {
+                    Get.to(Login());
+                  }
+                },
+              ),
+            ],
+          ),
         ));
   }
 }
