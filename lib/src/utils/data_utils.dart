@@ -73,7 +73,7 @@ class TodoDataUtils {
     final month = date.month;
     final day = date.day;
     switch (month) {
-      case 1:
+      case 11:
         if (day == 1) {
           return 'assets/images/bottom_nav_home_off_icon.png';
         } else if (day == 2) {
@@ -82,10 +82,6 @@ class TodoDataUtils {
           return 'assets/images/bottom_nav_note_text_on_icon.png';
         }
         break;
-      case 2:
-        return 'assets/images/bottom_nav_home_off_icon.png';
-      default:
-        return null;
     }
     return null;
   }

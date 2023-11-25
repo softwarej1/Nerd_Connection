@@ -15,6 +15,7 @@ class HomeController extends GetxController {
   GlobalKey calendarKey = GlobalKey();
   GlobalKey calendarHeaderKey = GlobalKey();
   Rx<Size> calendarHeaderSize = Size.zero.obs;
+
   //calendar card
   RxBool isDateSelected = false.obs;
   Rx<DateTime?> selectedDay = Rx<DateTime?>(null);
@@ -70,6 +71,13 @@ class HomeController extends GetxController {
       profileImagePath.value = pickedFile.path;
     } else {
       print('사진을 선택하지 않았습니다.');
+    }
+  }
+
+  void updateSelectedDay(DateTime? selectedDay) {
+    this.selectedDay.value = selectedDay;
+    if (selectedDay != null) {
+      isDateSelected.value = true;
     }
   }
 }

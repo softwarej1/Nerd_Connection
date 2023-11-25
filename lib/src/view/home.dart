@@ -31,7 +31,7 @@ class Home extends GetView<HomeController> {
     return Column(
       children: [
         _calendalWidget(),
-        _cardWidget(),
+        if (controller.isDateSelected.value) _cardWidget(),
       ],
     );
   }
@@ -39,10 +39,13 @@ class Home extends GetView<HomeController> {
   Widget _calendalWidget() {
     return SizedBox(
       key: controller.calendarKey,
-      height: 400,
+      height: 350,
       child: HomeCalendar(
         focusMonth: controller.headerDate.value,
         onCalendarCreated: controller.onCalendarCreated,
+        onCalendarDaySelected: (selectedDay) {
+          controller.updateSelectedDay(selectedDay);
+        },
       ),
     );
   }
@@ -51,7 +54,7 @@ class Home extends GetView<HomeController> {
     DateTime? selectedDate = controller.selectedDay.value;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      height: controller.isDateSelected.value ? 100 : 0,
+      height: controller.isDateSelected.value ? 220 : 0,
       color: Colors.blue,
       child: Center(
         child: Text(

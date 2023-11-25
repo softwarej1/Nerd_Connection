@@ -5,11 +5,13 @@ import 'package:table_calendar/table_calendar.dart';
 
 class HomeCalendar extends StatefulWidget {
   final Function(PageController) onCalendarCreated;
+  final Function(DateTime?) onCalendarDaySelected;
   final DateTime focusMonth;
   const HomeCalendar({
     Key? key,
     required this.focusMonth,
     required this.onCalendarCreated,
+    required this.onCalendarDaySelected,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
   @override
   void initState() {
     super.initState();
+    _selectedDay = widget.focusMonth;
   }
 
   @override
@@ -59,6 +62,8 @@ class _HomeCalendarState extends State<HomeCalendar> {
             _selectedDay = selectedDay;
             _focusedDay = focusedDay;
           });
+
+          widget.onCalendarDaySelected(selectedDay);
         }
       },
       calendarBuilders: CalendarBuilders(
