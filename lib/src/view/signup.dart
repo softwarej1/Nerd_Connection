@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
-import 'package:flutter_getx_palette_diary/src/widget/signup_textfield.dart';
+import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
 class SignUp extends StatelessWidget {

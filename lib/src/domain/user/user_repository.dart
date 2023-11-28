@@ -12,9 +12,15 @@ class UserRepository {
     print(loginReqDto.toJson());
 
     Response response = await _userProvider.login(loginReqDto.toJson());
-    //dynamic headers = response.headers;
+    dynamic headers = response.headers;
+    dynamic body = response.body;
+    print("사용자 정보 : $body");
 
-    String token = response.body["accessToken"];
-    return token;
+    if (headers["authorization"] == null) {
+      return "-1";
+    } else {
+      String token = headers["authorizatation"];
+      return token;
+    }
   }
 }
