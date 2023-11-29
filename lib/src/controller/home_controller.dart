@@ -27,6 +27,10 @@ class HomeController extends GetxController {
   // _profileImage에서 설정되어있는지
   bool get isProfileImageSet => profileImagePath.value.isNotEmpty;
 
+  //calendar card
+  RxBool isDateSelected = false.obs;
+  Rx<DateTime?> selectedDay = Rx<DateTime?>(null);
+
 //calendar 캘린더와 캘린더 헤더의 크기 계산, 함수로 전달
   void onCalendarCreated(PageController pageController) {
     SchedulerBinding.instance.addPostFrameCallback(
@@ -72,5 +76,12 @@ class HomeController extends GetxController {
   // 프로필 수정 페이지로 이동
   void pfmgo(HomeController controller) {
     Get.to(() => ProfileModify(controller));
+  }
+
+  void updateSelectedDay(DateTime? selectedDay) {
+    this.selectedDay.value = selectedDay;
+    if (selectedDay != null) {
+      isDateSelected.value = true;
+    }
   }
 }
