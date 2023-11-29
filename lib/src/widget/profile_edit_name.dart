@@ -11,7 +11,7 @@ class ProfileUserName extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: SizedBox(
-        width: 150.0,
+        width: MediaQuery.of(context).size.width * 0.8,
         child: TextFormField(
           textAlign: TextAlign.center,
           initialValue: initialValue,

@@ -10,6 +10,8 @@ class ProfileBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width * 0.25;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
       child: Container(
@@ -28,14 +30,14 @@ class ProfileBox extends StatelessWidget {
                 child: controller.isProfileImageSet
                     ? Image.file(
                         File(controller.profileImagePath.value),
-                        width: 100.0,
-                        height: 100.0,
+                        width: size,
+                        height: size,
                         fit: BoxFit.cover,
                       )
                     : Container(
                         color: Colors.blue,
-                        width: 100.0,
-                        height: 100.0,
+                        width: size,
+                        height: size,
                         child: const Center(
                           child: Icon(
                             Icons.camera_alt,

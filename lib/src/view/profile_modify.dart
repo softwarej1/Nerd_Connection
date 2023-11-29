@@ -39,6 +39,7 @@ class ProfileModify extends GetView<HomeController> {
   }
 
   Widget _profileImage(BuildContext context) {
+    double size = MediaQuery.of(context).size.width * 0.3;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -54,14 +55,14 @@ class ProfileModify extends GetView<HomeController> {
                     child: controller.isProfileImageSet
                         ? Image.file(
                             File(controller.profileImagePath.value),
-                            width: 120.0,
-                            height: 120.0,
+                            width: size,
+                            height: size,
                             fit: BoxFit.cover,
                           )
                         : Container(
                             color: Colors.grey,
-                            width: 120.0,
-                            height: 120,
+                            width: size,
+                            height: size,
                             child: const Center(
                               child: Icon(
                                 Icons.camera_alt,
@@ -74,7 +75,7 @@ class ProfileModify extends GetView<HomeController> {
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: SizedBox(
                       // 위젯 배치 깨지는 문제로 유지
-                      width: 150.0,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       child: TextFormField(),
                     ),
                   ),
