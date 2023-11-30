@@ -22,10 +22,18 @@ class HomeController extends GetxController {
   //profile
   var profileImagePath = ''.obs;
   Rx<File?> profileSelectedImage = Rx<File?>(null);
+  Rx<File?> selectedImage = Rx<File?>(null);
   final picker = ImagePicker();
   final Rxn<AssetEntity> _selectedImage = Rxn<AssetEntity>();
   //write
   AssetEntity? get writeSelectedImage => _selectedImage.value;
+
+  // _profileImage에서 설정되어있는지
+  bool get isProfileImageSet => profileImagePath.value.isNotEmpty;
+
+  //calendar card
+  RxBool isDateSelected = false.obs;
+  Rx<DateTime?> selectedDay = Rx<DateTime?>(null);
 
 //calendar 캘린더와 캘린더 헤더의 크기 계산, 함수로 전달
   void onCalendarCreated(PageController pageController) {
@@ -58,19 +66,26 @@ class HomeController extends GetxController {
     Get.to(() => const Write());
   }
 
-  // ProfileModify() 이동
-  void pfmgo() {
-    Get.to(() => const ProfileModify());
-  }
-
-//겔러리 이동, 선택
+//갤러리 이동, 선택
   Future<void> pickImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       profileImagePath.value = pickedFile.path;
     } else {
-      print('사진을 선택하지 않았습니다.');
+      // print('사진을 서택하지 않았습니다.');
+    }
+  }
+
+  // 프로필 수정 페이지로 이동
+  void pfmgo(HomeController controller) {
+    Get.to(() => ProfileModify(controller));
+  }
+
+  void updateSelectedDay(DateTime? selectedDay) {
+    this.selectedDay.value = selectedDay;
+    if (selectedDay != null) {
+      isDateSelected.value = true;
     }
   }
 

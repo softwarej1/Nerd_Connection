@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 class LoginPage extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
 
+  LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +54,7 @@ class LoginPage extends StatelessWidget {
               text: "로그인",
               funMoveToPage: () {
                 if (_formkey.currentState!.validate()) {
-                  Get.to(App());
+                  Get.to(const App());
                 }
               },
             ),
@@ -60,7 +62,7 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
                 Get.to(SignUp());
               },
-              child: Text("회원가입 하시겠습니까?",
+              child: const Text("회원가입 하시겠습니까?",
                   style: TextStyle(
                     color: Colors.black,
                   )),
