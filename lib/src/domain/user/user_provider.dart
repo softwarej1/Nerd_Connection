@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-const host = "http://172.19.105.58:8082";
+const host = "http://13.124.21.82:8080/users/login";
 
 class UserProvider extends GetConnect {
   //Promise (데이터 약속)

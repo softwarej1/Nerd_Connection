@@ -14,6 +14,6 @@ class User {
       : id = json["id"],
         username = json["username"],
         email = json["email"],
-        created = DateFormat("yyyy-mm-dd").parse(json["created"]),
-        updated = DateFormat("yyyy-mm-dd").parse(json["updated"]);
+        created = DateFormat("yyyy-MM-dd").parse(json["created"]),
+        updated = DateFormat("yyyy-MM-dd").parse(json["updated"]);
 }
