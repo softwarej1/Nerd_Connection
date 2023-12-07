@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/view/update.dart';
+import 'package:get/get.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
@@ -15,6 +17,13 @@ class MyPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(Update());
+              },
+              icon: Icon(Icons.edit)),
+        ],
       ),
       body: _myFeed(),
     );

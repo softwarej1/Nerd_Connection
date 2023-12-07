@@ -28,10 +28,12 @@ class Home extends GetView<HomeController> {
   }
 
   Widget _body() {
-    return Column(
-      children: [
-        _calendalWidget(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _calendalWidget(),
+        ],
+      ),
     );
   }
 
