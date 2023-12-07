@@ -15,7 +15,7 @@ class SignUp extends StatelessWidget {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Get.to(Login());
+                Get.to(LoginPage());
               })),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,33 +41,39 @@ class SignUp extends StatelessWidget {
 
   Widget _SignUpForm() {
     return Form(
-        key: _formkey,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomTextField(
-                hint: "이름",
-                funValidator: validateName(),
-              ),
-              CustomTextField(hint: "이메일", funValidator: validateEmail()),
-              CustomTextField(
-                hint: "비밀번호",
-                funValidator: validatePassword(),
-              ),
-              CustomTextField(
-                hint: "비밀번호 확인",
-                funValidator: validateConfirmPassword(),
-              ),
-              CustomElevatedButton(
-                text: "회원가입",
-                funMoveToPage: () {
-                  if (_formkey.currentState!.validate()) {
-                    Get.to(Login());
-                  }
-                },
-              ),
-            ],
+      key: _formkey,
+      child: Column(
+        children: [
+          CustomTextField(
+            hint: "이름",
+            funValidator: validateName(),
+            controller: null,
           ),
-        ));
+          CustomTextField(
+            hint: "이메일",
+            funValidator: validateEmail(),
+            controller: null,
+          ),
+          CustomTextField(
+            hint: "비밀번호",
+            funValidator: validatePassword(),
+            controller: null,
+          ),
+          CustomTextField(
+            hint: "비밀번호 확인",
+            funValidator: validateConfirmPassword(),
+            controller: null,
+          ),
+          CustomElevatedButton(
+            text: "회원가입",
+            funMoveToPage: () {
+              if (_formkey.currentState!.validate()) {
+                Get.to(LoginPage());
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

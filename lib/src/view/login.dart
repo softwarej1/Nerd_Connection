@@ -9,7 +9,7 @@ import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
-class Login extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
   final UserController u = Get.put(UserController());
 
@@ -61,10 +61,10 @@ class Login extends StatelessWidget {
                 text: "로그인",
                 funMoveToPage: () async {
                   if (_formkey.currentState!.validate()) {
-                    Get.to(App());
-                    String token =
+                    Get.to(const App());
+                    String? token =
                         await u.login(email.text.trim(), password.text.trim());
-                    if (token != "-1") {
+                    if (token != null) {
                       Get.to(() => const App());
                     } else {
                       Get.snackbar("로그인 시도", "로그인 실패");

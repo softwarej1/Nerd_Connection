@@ -5,11 +5,13 @@ import 'package:table_calendar/table_calendar.dart';
 
 class HomeCalendar extends StatefulWidget {
   final Function(PageController) onCalendarCreated;
+  final Function(DateTime?) onCalendarDaySelected;
   final DateTime focusMonth;
   const HomeCalendar({
     Key? key,
     required this.focusMonth,
     required this.onCalendarCreated,
+    required this.onCalendarDaySelected,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
   @override
   void initState() {
     super.initState();
+    _selectedDay = widget.focusMonth;
   }
 
   @override
@@ -59,6 +62,8 @@ class _HomeCalendarState extends State<HomeCalendar> {
             _selectedDay = selectedDay;
             _focusedDay = focusedDay;
           });
+
+          widget.onCalendarDaySelected(selectedDay);
         }
       },
       calendarBuilders: CalendarBuilders(
@@ -72,6 +77,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
           date: date,
           color: TodoDataUtils.dayToColor(date),
           isToday: false,
+          imagePath: TodoDataUtils.getImagePathForDate(date),
         ),
         outsideBuilder: (context, date, _) => _dayStyle(
           date: date,
@@ -107,6 +113,7 @@ class _HomeCalendarState extends State<HomeCalendar> {
     Color? color,
     bool isToday = false,
     bool isSelected = false,
+    String? imagePath,
   }) {
     var backgroundColor = Colors.white;
     if (isToday) backgroundColor = const Color(0xffbebfc7);
@@ -119,6 +126,14 @@ class _HomeCalendarState extends State<HomeCalendar> {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
+          Positioned.fill(
+            child: imagePath != null
+                ? Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  )
+                : Container(),
+          ),
           Center(
             child: Text(
               '${date.day}',

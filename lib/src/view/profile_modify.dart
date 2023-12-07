@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
+import 'package:flutter_getx_palette_diary/src/utils/profile_overlay.dart';
 import 'package:get/get.dart';
 
 class ProfileModify extends GetView<HomeController> {
-  const ProfileModify({super.key});
+  @override
+  final HomeController controller;
+  const ProfileModify(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,47 +23,50 @@ class ProfileModify extends GetView<HomeController> {
         ),
         centerTitle: true,
       ),
-      body: _body(),
+      body: _body(context),
     );
   }
 
-  Widget _body() {
-    return Column(
-      children: [
-        profileImageEditor(),
-        userProfileEditor(),
-      ],
+  Widget _body(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _profileImage(context),
+          _userinfor(context),
+        ],
+      ),
     );
   }
 
-  Widget profileImageEditor() {
+  Widget _profileImage(BuildContext context) {
+    double size = MediaQuery.of(context).size.width * 0.3;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
-          onTap: () async {
-            await controller.pickImage();
+          onTap: () {
+            showOverlay(context);
           },
           child: Obx(
             () {
               return Column(
                 children: [
                   ClipOval(
-                    child: controller.profileImagePath.value.isNotEmpty
+                    child: controller.isProfileImageSet
                         ? Image.file(
                             File(controller.profileImagePath.value),
-                            width: 120.0,
-                            height: 120.0,
+                            width: size,
+                            height: size,
                             fit: BoxFit.cover,
                           )
                         : Container(
-                            color: Colors.blue,
-                            width: 120.0,
-                            height: 120,
+                            color: Colors.grey,
+                            width: size,
+                            height: size,
                             child: const Center(
                               child: Icon(
                                 Icons.camera_alt,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                           ),
@@ -68,11 +74,9 @@ class ProfileModify extends GetView<HomeController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: SizedBox(
-                      width: 150.0,
-                      child: TextFormField(
-                        textAlign: TextAlign.center,
-                        initialValue: '기존 이름',
-                      ),
+                      // 위젯 배치 깨지는 문제로 유지
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: TextFormField(),
                     ),
                   ),
                 ],
@@ -84,24 +88,39 @@ class ProfileModify extends GetView<HomeController> {
     );
   }
 
-  Widget userProfileEditor() {
+  Widget _userinfor(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: TextFormField(
+            obscureText: true, // 비밀번호 * 처리
             decoration: const InputDecoration(labelText: 'Password'),
             textAlign: TextAlign.left,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: TextFormField(
             decoration: const InputDecoration(labelText: 'Email'),
             textAlign: TextAlign.left,
           ),
         ),
-        const Padding(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child: TextFormField(
+            decoration: const InputDecoration(labelText: 'Phone'),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _userintro() {
+    return const Column(
+      children: [
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
           child: Align(
             alignment: Alignment.centerLeft,

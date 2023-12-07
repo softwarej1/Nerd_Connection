@@ -28,22 +28,39 @@ class Home extends GetView<HomeController> {
   }
 
   Widget _body() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _calendalWidget(),
-        ],
-      ),
+    return Column(
+      children: [
+        _calendalWidget(),
+        if (controller.isDateSelected.value) _cardWidget(),
+      ],
     );
   }
 
   Widget _calendalWidget() {
     return SizedBox(
       key: controller.calendarKey,
-      height: 400,
+      height: 350,
       child: HomeCalendar(
         focusMonth: controller.headerDate.value,
         onCalendarCreated: controller.onCalendarCreated,
+        onCalendarDaySelected: (selectedDay) {
+          controller.updateSelectedDay(selectedDay);
+        },
+      ),
+    );
+  }
+
+  Widget _cardWidget() {
+    DateTime? selectedDate = controller.selectedDay.value;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: controller.isDateSelected.value ? 220 : 0,
+      color: Colors.blue,
+      child: Center(
+        child: Text(
+          'Selected Date: ${selectedDate?.toLocal()}',
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
