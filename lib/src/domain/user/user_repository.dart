@@ -7,14 +7,20 @@ import 'package:get/get_connect/http/src/response/response.dart';
 class UserRepository {
   final UserProvider _userProvider = UserProvider();
 
-  Future<String> login(String username, String password) async {
-    LoginReqDto loginReqDto = LoginReqDto(username, password);
+  Future<String> login(String email, String password) async {
+    LoginReqDto loginReqDto = LoginReqDto(email, password);
     print(loginReqDto.toJson());
 
     Response response = await _userProvider.login(loginReqDto.toJson());
-    //dynamic headers = response.headers;
+    dynamic headers = response.headers;
+    dynamic body = response.body;
+    print("사용자 정보 : $body");
 
-    String token = response.body["accessToken"];
-    return token;
+    if (headers["authorization"] == null) {
+      return "-1";
+    } else {
+      String token = headers["authorizatation"];
+      return token;
+    }
   }
 }

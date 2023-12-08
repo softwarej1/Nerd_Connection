@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/home.dart';
+import 'package:flutter_getx_palette_diary/src/widget/custom_textarea.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:get/get.dart';
 
-class Write extends GetView<HomeController> {
-  const Write({super.key});
+class Update extends GetView<HomeController> {
+  const Update({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: const Text('글쓰기'),
+          title: const Text('글 수정하기'),
           centerTitle: true,
           actions: [
             IconButton(
@@ -71,8 +72,11 @@ class Write extends GetView<HomeController> {
   Widget _text() {
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child:
-          CustomTextField(hint: '코멘트를 입력하세요.', funValidator: validateContent()),
+      child: CustomTextArea(
+        hint: '코멘트를 입력하세요.',
+        funValidator: validateContent(),
+        value: "내용",
+      ),
     );
   }
 }

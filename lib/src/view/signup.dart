@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/login.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
-import 'package:flutter_getx_palette_diary/src/widget/signup_textfield.dart';
+import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
 class SignUp extends StatelessWidget {
@@ -47,15 +47,22 @@ class SignUp extends StatelessWidget {
           CustomTextField(
             hint: "이름",
             funValidator: validateName(),
+            controller: null,
           ),
-          CustomTextField(hint: "이메일", funValidator: validateEmail()),
+          CustomTextField(
+            hint: "이메일",
+            funValidator: validateEmail(),
+            controller: null,
+          ),
           CustomTextField(
             hint: "비밀번호",
             funValidator: validatePassword(),
+            controller: null,
           ),
           CustomTextField(
             hint: "비밀번호 확인",
             funValidator: validateConfirmPassword(),
+            controller: null,
           ),
           CustomElevatedButton(
             text: "회원가입",
