@@ -40,12 +40,14 @@ class Home extends GetView<HomeController> {
     return SizedBox(
       key: controller.calendarKey,
       height: 350,
-      child: HomeCalendar(
-        focusMonth: controller.headerDate.value,
-        onCalendarCreated: controller.onCalendarCreated,
-        onCalendarDaySelected: (selectedDay) {
-          controller.updateSelectedDay(selectedDay);
-        },
+      child: SingleChildScrollView(
+        child: HomeCalendar(
+          focusMonth: controller.headerDate.value,
+          onCalendarCreated: controller.onCalendarCreated,
+          onCalendarDaySelected: (selectedDay) {
+            controller.updateSelectedDay(selectedDay);
+          },
+        ),
       ),
     );
   }
