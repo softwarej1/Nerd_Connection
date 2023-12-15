@@ -28,11 +28,13 @@ class Home extends GetView<HomeController> {
   }
 
   Widget _body() {
-    return Column(
-      children: [
-        _calendalWidget(),
-        if (controller.isDateSelected.value) _cardWidget(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _calendalWidget(),
+          if (controller.isDateSelected.value) _cardWidget(),
+        ],
+      ),
     );
   }
 
