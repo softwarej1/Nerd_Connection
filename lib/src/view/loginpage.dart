@@ -3,7 +3,6 @@ import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
-import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup.dart';
 
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
