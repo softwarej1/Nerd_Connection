@@ -40,12 +40,12 @@ dependencies:
   flutter_native_splash: ^2.3.3
   intl: ^0.18.1
   google_fonts: ^6.1.0
-  photo_manager: ^2.7.2
   image_picker: ^1.0.4
   validators: ^3.0.0
   dio: ^5.4.0
   freezed_annotation: ^2.4.1 # 추가
   freezed: ^2.4.5
+  
   
  
 

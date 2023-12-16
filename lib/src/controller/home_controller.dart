@@ -6,7 +6,6 @@ import 'package:flutter_getx_palette_diary/src/view/profile_modify.dart';
 import 'package:flutter_getx_palette_diary/src/view/write.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:photo_manager/photo_manager.dart';
 
 class HomeController extends GetxController {
   //calendar
@@ -24,9 +23,9 @@ class HomeController extends GetxController {
   Rx<File?> profileSelectedImage = Rx<File?>(null);
   Rx<File?> selectedImage = Rx<File?>(null);
   final picker = ImagePicker();
-  final Rxn<AssetEntity> _selectedImage = Rxn<AssetEntity>();
-  //write
-  AssetEntity? get writeSelectedImage => _selectedImage.value;
+  // final Rxn<AssetEntity> _selectedImage = Rxn<AssetEntity>();
+  // //write
+  // AssetEntity? get writeSelectedImage => _selectedImage.value;
 
   // _profileImage에서 설정되어있는지
   bool get isProfileImageSet => profileImagePath.value.isNotEmpty;

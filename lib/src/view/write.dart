@@ -3,7 +3,6 @@ import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
-import 'package:photo_manager/photo_manager.dart';
 import 'package:get/get.dart';
 
 class Write extends GetView<HomeController> {
@@ -33,40 +32,40 @@ class Write extends GetView<HomeController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          _image(),
+          // _image(),
           _text(),
         ],
       ),
     );
   }
 
-  Widget _image() {
-    return (controller.writeSelectedImage != null)
-        ? SizedBox(
-            height: 200,
-            width: Get.size.width,
-            child: AssetEntityImage(
-              controller.writeSelectedImage!,
-              isOriginal: false,
-              fit: BoxFit.contain,
-            ),
-          )
-        : Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                width: Get.size.width,
-                height: 250,
-                color: Colors.grey,
-                child: const Icon(
-                  Icons.photo,
-                  size: 44,
-                ),
-              ),
-            ),
-          );
-  }
+  // Widget _image() {
+  //   return (controller.writeSelectedImage != null)
+  //       ? SizedBox(
+  //           height: 200,
+  //           width: Get.size.width,
+  //           child: AssetEntityImage(
+  //             controller.writeSelectedImage!,
+  //             isOriginal: false,
+  //             fit: BoxFit.contain,
+  //           ),
+  //         )
+  //       : Padding(
+  //           padding: const EdgeInsets.all(16.0),
+  //           child: InkWell(
+  //             onTap: () {},
+  //             child: Container(
+  //               width: Get.size.width,
+  //               height: 250,
+  //               color: Colors.grey,
+  //               child: const Icon(
+  //                 Icons.photo,
+  //                 size: 44,
+  //               ),
+  //             ),
+  //           ),
+  //         );
+  // }
 
   Widget _text() {
     return Padding(
