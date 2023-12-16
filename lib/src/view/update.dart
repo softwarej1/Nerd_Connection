@@ -18,7 +18,7 @@ class Update extends GetView<HomeController> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Get.to(const Home());
+                  Get.to(() => const Home());
                 },
                 icon: const Icon(Icons.check))
           ],

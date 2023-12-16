@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/app.dart';
-import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
-
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup.dart';
 
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
+import '../controller/login_controller.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends GetView<LoginController> {
   final _formkey = GlobalKey<FormState>();
 
-  final UserController u = Get.put(UserController());
-
-  TextEditingController email = TextEditingController();
-
-  TextEditingController password = TextEditingController();
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,26 +31,26 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            _LoginForm(),
+            _loginForm(),
           ],
         ),
       ),
     );
   }
 
-  Widget _LoginForm() {
+  Widget _loginForm() {
     return Form(
         key: _formkey,
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTextField(
-                controller: email,
+                controller: controller.email,
                 hint: "이메일",
                 funValidator: validateEmail(),
               ),
               CustomTextField(
-                controller: password,
+                controller: controller.password,
                 hint: "비밀번호",
                 funValidator: validatePassword(),
               ),
