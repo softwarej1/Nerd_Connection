@@ -4,12 +4,11 @@ import 'package:flutter_getx_palette_diary/src/repository/user_repository.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
-  final Rx<List<User>> _users = Rx<List<User>>([]);
+  final RxList<User> _users = <User>[].obs; // 사용자 리스트
   final TextEditingController _id = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final userRepository = UserRepository();
 
-  List<User> get users => _users.value;
   TextEditingController get id => _id;
   TextEditingController get password => _password;
 
@@ -29,8 +28,7 @@ class UserController extends GetxController {
     final user =
         User(id: _id.value.text, password: _password.value.text.toString());
     userRepository.putUsers(user.toJson()).then((value) {
-      _users.value.add(value);
-      _users.refresh();
+      _users.add(value); // 새로운 사용자 추가
     });
   }
 }
