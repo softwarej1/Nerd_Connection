@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 class SignUp extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
 
+  SignUp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

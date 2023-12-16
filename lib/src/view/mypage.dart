@@ -20,9 +20,9 @@ class MyPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(Update());
+                Get.to(() => const Update());
               },
-              icon: Icon(Icons.edit)),
+              icon: const Icon(Icons.edit)),
         ],
       ),
       body: _myFeed(),

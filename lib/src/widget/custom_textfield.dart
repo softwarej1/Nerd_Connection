@@ -6,7 +6,10 @@ class CustomTextField extends StatelessWidget {
   final funValidator;
 
   const CustomTextField(
-      {required this.hint, required this.funValidator, this.controller});
+      {super.key,
+      required this.hint,
+      required this.funValidator,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {

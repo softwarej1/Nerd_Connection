@@ -3,7 +3,6 @@ import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textarea.dart';
-import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +70,7 @@ class Update extends GetView<HomeController> {
 
   Widget _text() {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: CustomTextArea(
         hint: '코멘트를 입력하세요.',
         funValidator: validateContent(),

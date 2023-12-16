@@ -3,18 +3,24 @@ import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
-import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup.dart';
 
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
+
   final UserController u = Get.put(UserController());
 
   TextEditingController email = TextEditingController();
+
   TextEditingController password = TextEditingController();
 
   @override
@@ -62,7 +68,7 @@ class LoginPage extends StatelessWidget {
                   text: "로그인",
                   funMoveToPage: () async {
                     if (_formkey.currentState!.validate()) {
-                      Get.to(() => App());
+                      Get.to(() => const App());
                     } else {
                       Get.snackbar("로그인 시도", "로그인 실패");
                     }
