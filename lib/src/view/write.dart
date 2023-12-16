@@ -69,7 +69,7 @@ class Write extends GetView<HomeController> {
 
   Widget _text() {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child:
           CustomTextField(hint: '코멘트를 입력하세요.', funValidator: validateContent()),
     );
