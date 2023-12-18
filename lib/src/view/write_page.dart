@@ -5,8 +5,8 @@ import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
-class Write extends GetView<HomeController> {
-  const Write({super.key});
+class WritePage extends GetView<HomeController> {
+  const WritePage({super.key});
 
   @override
   Widget build(BuildContext context) {

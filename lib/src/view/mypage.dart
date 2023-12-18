@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/view/update.dart';
+import 'package:flutter_getx_palette_diary/src/view/update_page.dart';
 import 'package:get/get.dart';
 
 class MyPage extends StatelessWidget {
@@ -20,7 +20,7 @@ class MyPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(() => const Update());
+                Get.to(() => const UpdatePage());
               },
               icon: const Icon(Icons.edit)),
         ],
