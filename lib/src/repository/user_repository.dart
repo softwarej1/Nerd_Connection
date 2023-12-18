@@ -12,11 +12,11 @@ class UserRepository {
           .then((response) {
         print(response.statusCode);
         print(response.data);
-        // if (response.statusCode == 200) {
-        //   return User.fromJson(response.data);
-        // } else {
-        //   return null;
-        // }
+        if (response.statusCode == 200) {
+          return User.fromJson(response.data);
+        } else {
+          return null;
+        }
       });
     } catch (e) {
       throw Exception();
