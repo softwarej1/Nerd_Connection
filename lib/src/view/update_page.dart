@@ -5,8 +5,8 @@ import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textarea.dart';
 import 'package:get/get.dart';
 
-class Update extends GetView<HomeController> {
-  const Update({super.key});
+class UpdatePage extends GetView<HomeController> {
+  const UpdatePage({super.key});
 
   @override
   Widget build(BuildContext context) {

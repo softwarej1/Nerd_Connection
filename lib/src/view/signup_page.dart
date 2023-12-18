@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/signup_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
-import 'package:flutter_getx_palette_diary/src/view/loginpage.dart';
+import 'package:flutter_getx_palette_diary/src/view/login_page.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
-class SignUp extends GetView<SignUpController> {
+class SignUpPage extends GetView<SignUpController> {
   final _formkey = GlobalKey<FormState>();
 
-  SignUp({super.key});
+  SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
