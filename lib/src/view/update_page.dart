@@ -5,8 +5,8 @@ import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textarea.dart';
 import 'package:get/get.dart';
 
-class Update extends GetView<HomeController> {
-  const Update({super.key});
+class UpdatePage extends GetView<HomeController> {
+  const UpdatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class Update extends GetView<HomeController> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Get.to(const Home());
+                  Get.to(() => const Home());
                 },
                 icon: const Icon(Icons.check))
           ],
@@ -69,7 +69,7 @@ class Update extends GetView<HomeController> {
 
   Widget _text() {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: CustomTextArea(
         hint: '코멘트를 입력하세요.',
         funValidator: validateContent(),

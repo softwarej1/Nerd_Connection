@@ -7,7 +7,8 @@ class CustomTextArea extends StatelessWidget {
   final String? value;
 
   const CustomTextArea(
-      {required this.hint,
+      {super.key,
+      required this.hint,
       required this.funValidator,
       this.controller,
       this.value});
