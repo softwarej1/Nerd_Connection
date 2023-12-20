@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
+import 'package:flutter_getx_palette_diary/src/binding/signup_binding.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup_page.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class LoginController extends GetxController {
   TextEditingController get password => _password;
 
   void moveToRegister() {
-    Get.to(() => SignUpPage());
+    Get.to(() => SignUpPage(), binding: SignupBinding());
   }
 
   void moveToApp() {
