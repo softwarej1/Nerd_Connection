@@ -34,7 +34,7 @@ migrate_working_dir/
 /build/
 
 # api
-/lib/src/urils/api_url.dart
+/lib/src/utils/api_url.dart
 
 # Symbolication related
 app.*.symbols
