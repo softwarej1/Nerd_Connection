@@ -5,7 +5,7 @@ import 'package:flutter_getx_palette_diary/src/view/home.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
-  final Rxn<User> _users = Rxn<User>(); // 사용자 리스트
+  final Rxn<User> _users = Rxn<User>();
 
   final TextEditingController _id = TextEditingController();
   final TextEditingController _password = TextEditingController();
