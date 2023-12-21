@@ -70,8 +70,10 @@ class WritePage extends GetView<HomeController> {
   Widget _text() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child:
-          CustomTextField(hint: '코멘트를 입력하세요.', funValidator: validateContent()),
+      child: CustomTextField(
+        hint: '코멘트를 입력하세요.',
+        validator: ValidatorUtil.validateContent,
+      ),
     );
   }
 }

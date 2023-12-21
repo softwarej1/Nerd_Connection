@@ -1,30 +1,26 @@
 import 'package:validators/validators.dart';
 
-Function validateName() {
-  return (String? value) {
-    if (value!.isEmpty) {
+class ValidatorUtil {
+  static String? validateName(String? value) {
+    if (value == null || value.isEmpty) {
       return "공백이 들어갈 수 업습니다.";
     } else {
       return null;
     }
-  };
-}
+  }
 
-Function validateEmail() {
-  return (String? value) {
-    if (value!.isEmpty) {
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
       return "공백이 들어갈 수 업습니다.";
     } else if (!isEmail(value)) {
       return "이메일 형식에 맞지 않습니다.";
     } else {
       return null;
     }
-  };
-}
+  }
 
-Function validatePassword() {
-  return (String? value) {
-    if (value!.isEmpty) {
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
       return "공백이 들어갈 수 업습니다.";
     } else if (value.length > 12) {
       return "패스워드의 길이를 초과하였습니다.";
@@ -33,29 +29,25 @@ Function validatePassword() {
     } else {
       return null;
     }
-  };
-}
+  }
 
-Function validateConfirmPassword() {
-  return (String? value) {
-    if (value!.isEmpty) {
+  static String? validateConfirmPassword(String? value, String? password) {
+    if (value == null || value.isEmpty) {
       return "공백이 들어갈 수 업습니다.";
-    } else if (value != validatePassword()) {
+    } else if (value != password) {
       return "비밀번호가 일치하지 않습니다.";
     } else {
       return null;
     }
-  };
-}
+  }
 
-Function validateContent() {
-  return (String? value) {
-    if (value!.isEmpty) {
+  static String? validateContent(String? value) {
+    if (value == null || value.isEmpty) {
       return "공백이 들어갈 수 업습니다.";
     } else if (value.length > 100) {
       return "내용의 길이를 초과하였습니다.";
     } else {
       return null;
     }
-  };
+  }
 }

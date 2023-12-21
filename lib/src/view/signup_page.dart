@@ -49,27 +49,28 @@ class SignUpPage extends GetView<SignUpController> {
         children: [
           CustomTextField(
             hint: "이름",
-            funValidator: validateName(),
+            validator: ValidatorUtil.validateName,
             controller: controller.name,
           ),
           CustomTextField(
             hint: "이메일",
-            funValidator: validateEmail(),
+            validator: ValidatorUtil.validateEmail,
             controller: controller.email,
           ),
           CustomTextField(
             hint: "비밀번호",
-            funValidator: validatePassword(),
+            validator: ValidatorUtil.validatePassword,
             controller: controller.password,
           ),
           CustomTextField(
             hint: "비밀번호 확인",
-            funValidator: validateConfirmPassword(),
+            validator: (value) => ValidatorUtil.validateConfirmPassword(
+                value, controller.confirmpassword.text),
             controller: controller.confirmpassword,
           ),
           CustomElevatedButton(
             text: "회원가입",
-            funMoveToPage: () {
+            onPressed: () {
               if (_formkey.currentState!.validate()) {
                 Get.to(() => LoginPage());
               }

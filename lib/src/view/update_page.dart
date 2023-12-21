@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
-import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/home_page.dart';
-import 'package:flutter_getx_palette_diary/src/widget/custom_textarea.dart';
 import 'package:get/get.dart';
 
 class UpdatePage extends GetView<HomeController> {
@@ -33,7 +31,7 @@ class UpdatePage extends GetView<HomeController> {
       child: Column(
         children: [
           // _image(),
-          _text(),
+          // _text(),
         ],
       ),
     );
@@ -67,14 +65,15 @@ class UpdatePage extends GetView<HomeController> {
   //         );
   // }
 
-  Widget _text() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: CustomTextArea(
-        hint: '코멘트를 입력하세요.',
-        funValidator: validateContent(),
-        value: "내용",
-      ),
-    );
-  }
+  // Widget _text() {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(16.0),
+  //     child: CustomTextArea(
+  //       hint: '코멘트를 입력하세요.',
+  //       validator: ValidatorUtil.validateContent,
+  //       value: "내용",
+  //       controller: controller,
+  //     ),
+  //   );
+  // }
 }
