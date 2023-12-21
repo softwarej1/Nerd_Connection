@@ -8,10 +8,8 @@ import 'package:get/get.dart';
 class LoginController extends GetxController {
   late double screenWidth = 0.0;
   late double screenHeight = 0.0;
-  final _email = TextEditingController();
-  final _password = TextEditingController();
-  TextEditingController get email => _email;
-  TextEditingController get password => _password;
+  TextEditingController get email => TextEditingController();
+  TextEditingController get password => TextEditingController();
 
   void moveToRegister() {
     Get.to(() => SignUpPage(), binding: SignupBinding());

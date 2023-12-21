@@ -15,11 +15,13 @@ class SignUpPage extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Get.to(() => LoginPage());
-              })),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Get.to(() => LoginPage());
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -65,8 +67,8 @@ class SignUpPage extends GetView<SignUpController> {
           CustomTextField(
             hint: "비밀번호 확인",
             validator: (value) => ValidatorUtil.validateConfirmPassword(
-                value, controller.confirmpassword.text),
-            controller: controller.confirmpassword,
+                value, controller.confirmPassword.text),
+            controller: controller.confirmPassword,
           ),
           CustomElevatedButton(
             text: "회원가입",

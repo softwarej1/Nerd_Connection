@@ -23,18 +23,15 @@ class LoginPage extends GetView<LoginController> {
   }
 
   Widget _logintext() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        alignment: Alignment.center,
-        height: 200,
-        child: const Text(
-          '로그인',
-          style: TextStyle(
-            color: Color.fromARGB(255, 129, 132, 211),
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
+    return Container(
+      alignment: Alignment.center,
+      height: 200,
+      child: const Text(
+        '로그인',
+        style: TextStyle(
+          color: Color.fromARGB(255, 129, 132, 211),
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
