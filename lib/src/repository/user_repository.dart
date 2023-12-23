@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
-
-import '../utils/api_url.dart';
+import 'package:flutter_getx_palette_diary/src/utils/api_url.dart';
 
 class UserRepository {
   final dio = Dio();
