@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup_page.dart';
@@ -65,13 +66,14 @@ class LoginPage extends GetView<LoginController> {
                     funMoveToPage: () async {
                       if (_formkey.currentState!.validate()) {
                         Get.find<UserController>().fetchData();
+                        Get.to(() => App());
                       } else {
                         Get.snackbar("로그인 시도", "로그인 실패");
                       }
                     }),
                 TextButton(
                   onPressed: () {
-                    Get.to(SignUpPage());
+                    Get.to(() => SignUpPage());
                   },
                   child: const Text("회원가입 하시겠습니까?",
                       style: TextStyle(
