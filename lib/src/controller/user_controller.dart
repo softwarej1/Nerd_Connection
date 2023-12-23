@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:flutter_getx_palette_diary/src/repository/user_repository.dart';
-import 'package:flutter_getx_palette_diary/src/view/home.dart';
+import 'package:flutter_getx_palette_diary/src/view/home_page.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {

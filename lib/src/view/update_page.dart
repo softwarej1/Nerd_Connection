@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
-import 'package:flutter_getx_palette_diary/src/view/home.dart';
+import 'package:flutter_getx_palette_diary/src/view/home_page.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textarea.dart';
 import 'package:get/get.dart';
 
