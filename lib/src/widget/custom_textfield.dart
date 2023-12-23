@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         validator: validator,
-        obscureText: isPassword, // ???
+        obscureText: isPassword,
 
         //hint == "비밀번호" ? true : false,
 
