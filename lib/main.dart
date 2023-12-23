@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
 import 'package:flutter_getx_palette_diary/src/binding/login_binding.dart';
 import 'package:flutter_getx_palette_diary/src/view/login_page.dart';
 import 'package:get/get.dart';
