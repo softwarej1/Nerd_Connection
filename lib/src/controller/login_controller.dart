@@ -12,7 +12,7 @@ class LoginController extends GetxController {
   TextEditingController get password => TextEditingController();
 
   void moveToRegister() {
-    Get.to(() => SignUpPage(), binding: SignupBinding());
+    Get.to(() => SignUpPage(), binding: SignUpBinding());
   }
 
   void moveToApp() {
