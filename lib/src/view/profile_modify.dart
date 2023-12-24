@@ -23,23 +23,19 @@ class ProfileModify extends GetView<HomeController> {
         ),
         centerTitle: true,
       ),
-      body: _body(context),
-    );
-  }
-
-  Widget _body(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _profileImage(context),
-          _userinfor(context),
-        ],
-      ),
+      body: Obx(() => SingleChildScrollView(
+            child: Column(
+              children: [
+                _profileImage(context),
+                _userinfor(context),
+              ],
+            ),
+          )),
     );
   }
 
   Widget _profileImage(BuildContext context) {
-    double size = MediaQuery.of(context).size.width * 0.3;
+    double size = controller.calculateProfileImageSize(context);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -47,41 +43,37 @@ class ProfileModify extends GetView<HomeController> {
           onTap: () {
             showOverlay(context);
           },
-          child: Obx(
-            () {
-              return Column(
-                children: [
-                  ClipOval(
-                    child: controller.isProfileImageSet
-                        ? Image.file(
-                            File(controller.profileImagePath.value),
-                            width: size,
-                            height: size,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(
-                            color: Colors.grey,
-                            width: size,
-                            height: size,
-                            child: const Center(
-                              child: Icon(
-                                Icons.camera_alt,
-                                color: Colors.black,
-                              ),
-                            ),
+          child: Column(
+            children: [
+              ClipOval(
+                child: controller.isProfileImageSet
+                    ? Image.file(
+                        File(controller.profileImagePath.value),
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        color: Colors.grey,
+                        width: size,
+                        height: size,
+                        child: const Center(
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.black,
                           ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: SizedBox(
-                      // 위젯 배치 깨지는 문제로 유지
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: TextFormField(),
-                    ),
-                  ),
-                ],
-              );
-            },
+                        ),
+                      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: SizedBox(
+                  // 위젯 배치 깨지는 문제로 유지
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: TextFormField(),
+                ),
+              ),
+            ],
           ),
         ),
       ),

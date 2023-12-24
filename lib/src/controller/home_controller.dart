@@ -30,6 +30,11 @@ class HomeController extends GetxController {
   // _profileImage에서 설정되어있는지
   bool get isProfileImageSet => profileImagePath.value.isNotEmpty;
 
+  //double size 정의
+  double calculateProfileImageSize(BuildContext context) {
+    return MediaQuery.of(context).size.width * 0.3;
+  }
+
 //calendar 캘린더와 캘린더 헤더의 크기 계산, 함수로 전달
   void onCalendarCreated(PageController pageController) {
     SchedulerBinding.instance.addPostFrameCallback(
