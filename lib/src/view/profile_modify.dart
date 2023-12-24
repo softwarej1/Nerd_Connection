@@ -12,30 +12,30 @@ class ProfileModify extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          '프로필 수정',
-          style: TextStyle(
-            fontFamily: 'NanumGothic',
-            fontWeight: FontWeight.bold,
+    return Obx(() => Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              '프로필 수정',
+              style: TextStyle(
+                fontFamily: 'NanumGothic',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            centerTitle: true,
           ),
-        ),
-        centerTitle: true,
-      ),
-      body: Obx(() => SingleChildScrollView(
+          body: SingleChildScrollView(
             child: Column(
               children: [
                 _profileImage(context),
                 _userinfor(context),
               ],
             ),
-          )),
-    );
+          ),
+        ));
   }
 
   Widget _profileImage(BuildContext context) {
-    double size = controller.calculateProfileImageSize(context);
+    double size = MediaQuery.of(context).size.width * 0.3;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
