@@ -1,41 +1,39 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
-import 'package:flutter_getx_palette_diary/src/utils/profile_overlay.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileModify extends GetView<HomeController> {
   @override
   final HomeController controller;
-  const ProfileModify(this.controller, {super.key});
+  ProfileModify(this.controller, {super.key});
+
+  final Rx<File?> _selectImageFile = Rx<File?>(null);
+  OverlayEntry? _overlayEntry;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          '프로필 수정',
-          style: TextStyle(
-            fontFamily: 'NanumGothic',
-            fontWeight: FontWeight.bold,
+    return Obx(() => Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              '프로필 수정',
+              style: TextStyle(
+                fontFamily: 'NanumGothic',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            centerTitle: true,
           ),
-        ),
-        centerTitle: true,
-      ),
-      body: _body(context),
-    );
-  }
-
-  Widget _body(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _profileImage(context),
-          _userinfor(context),
-        ],
-      ),
-    );
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                _profileImage(context),
+                _userinfor(context),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _profileImage(BuildContext context) {
@@ -47,41 +45,37 @@ class ProfileModify extends GetView<HomeController> {
           onTap: () {
             showOverlay(context);
           },
-          child: Obx(
-            () {
-              return Column(
-                children: [
-                  ClipOval(
-                    child: controller.isProfileImageSet
-                        ? Image.file(
-                            File(controller.profileImagePath.value),
-                            width: size,
-                            height: size,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(
-                            color: Colors.grey,
-                            width: size,
-                            height: size,
-                            child: const Center(
-                              child: Icon(
-                                Icons.camera_alt,
-                                color: Colors.black,
-                              ),
-                            ),
+          child: Column(
+            children: [
+              ClipOval(
+                child: controller.isProfileImageSet
+                    ? Image.file(
+                        File(controller.profileImagePath.value),
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        color: Colors.grey,
+                        width: size,
+                        height: size,
+                        child: const Center(
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.black,
                           ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: SizedBox(
-                      // 위젯 배치 깨지는 문제로 유지
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: TextFormField(),
-                    ),
-                  ),
-                ],
-              );
-            },
+                        ),
+                      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: SizedBox(
+                  // 위젯 배치 깨지는 문제로 유지
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: TextFormField(),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -132,5 +126,156 @@ class ProfileModify extends GetView<HomeController> {
         ),
       ],
     );
+  }
+
+  void showOverlay(BuildContext context) {
+    _overlayEntry = OverlayEntry(
+      builder: (context) => Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.3), //불투명도 조절
+            ),
+          ),
+          GestureDetector(
+            onTap: _removeOverlay, // 다른 곳을 터치하면 _removeOverlay 함수를 호출
+            behavior: HitTestBehavior.translucent, // 투명 영역 탭 감지
+          ),
+          Positioned(
+            // 오버레이 위치 설정
+            bottom: 10.0,
+            left: 5.0,
+            right: 5.0,
+            child: Material(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    const Padding(
+                      padding: EdgeInsets.only(top: 12.0),
+                      child: SizedBox(
+                        height: 23.0,
+                        child: Center(
+                          child: Text(
+                            '프로필 사진 설정',
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 0.8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: SizedBox(
+                        height: 23.0, // 원하는 높이로 설정
+                        child: InkWell(
+                          onTap: () {
+                            _selectImage();
+                            _removeOverlay();
+                          },
+                          child: const Center(
+                            child: Text(
+                              '갤러리에서 사진 선택',
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 0.8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: SizedBox(
+                        height: 23.0,
+                        child: InkWell(
+                          onTap: () async {
+                            await _captureImage();
+                          },
+                          child: const Center(
+                            child: Text(
+                              '직접 사진 찍기',
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 0.8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 3.0, bottom: 12.0),
+                      child: SizedBox(
+                        height: 35.0, // 원하는 높이로 설정
+                        child: InkWell(
+                          onTap: _removeOverlay,
+                          child: const Center(
+                            child: Text(
+                              '기존 이미지로 변경',
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+    if (_overlayEntry != null) {
+      Overlay.of(context).insert(_overlayEntry!);
+    }
+  }
+
+  void _removeOverlay() {
+    // 다른 곳 누르면 오버레이 종료
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  _captureImage() async {
+    // 사진찍기
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.camera);
+
+    if (image != null) {
+      _selectImageFile.value = File(image.path);
+    }
+  }
+
+  _selectImage() async {
+    // 갤러리에서 선택
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      _selectImageFile.value = File(image.path);
+    }
   }
 }
