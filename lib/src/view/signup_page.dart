@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/controller/join_controller.dart';
 import 'package:flutter_getx_palette_diary/src/controller/signup_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/login_page.dart';

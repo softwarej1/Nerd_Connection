@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: LoginPage(),
-      initialBinding: LoginBinding(),
+      initialBinding: InitBinding(),
       debugShowCheckedModeBanner: false,
     );
   }
