@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/controller/join_controller.dart';
-import 'package:flutter_getx_palette_diary/src/controller/signup_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/view/login_page.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
-class SignUpPage extends GetView<SignUpController> {
+class SignUpPage extends GetView<UserController> {
   final _formkey = GlobalKey<FormState>();
 
   SignUpPage({super.key});
@@ -58,7 +57,7 @@ class SignUpPage extends GetView<SignUpController> {
           CustomTextField(
             hint: "이메일",
             validator: ValidatorUtil.validateEmail,
-            controller: controller.email,
+            controller: controller.id,
           ),
           CustomTextField(
             hint: "비밀번호",
@@ -74,9 +73,7 @@ class SignUpPage extends GetView<SignUpController> {
           CustomElevatedButton(
             text: "회원가입",
             onPressed: () {
-              if (_formkey.currentState!.validate()) {
-                Get.to(() => LoginPage());
-              }
+              if (_formkey.currentState!.validate()) {}
             },
           ),
         ],

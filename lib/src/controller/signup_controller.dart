@@ -1,3 +1,5 @@
+/////////////////////////////////////// 제거
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,3 +17,4 @@ class SignUpController extends GetxController {
     screenHeight = MediaQuery.of(context).size.height;
   }
 }
+//////////////////////////////////

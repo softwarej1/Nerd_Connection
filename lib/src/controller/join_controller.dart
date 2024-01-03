@@ -32,7 +32,7 @@ class JoinController extends GetxController {
       'confirmpassword': confirmpassword.text.toString(),
     };
 
-    repository.JoinApi(join).then((join) {
+    repository.joinApi(join).then((join) {
       _joins.value = join;
       Get.to(() => SignUpPage());
     });

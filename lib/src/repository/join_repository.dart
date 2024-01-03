@@ -6,7 +6,7 @@ import '../utils/api_url.dart';
 class JoinRepository {
   final dio = Dio();
 
-  Future<Join?> JoinApi(Map<String, dynamic> json) async {
+  Future<Join?> joinApi(Map<String, dynamic> json) async {
     try {
       print(json);
       return dio.post(ApiUrls.joinUrl, data: json).then((response) {
