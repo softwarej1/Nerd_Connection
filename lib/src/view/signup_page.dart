@@ -73,7 +73,11 @@ class SignUpPage extends GetView<UserController> {
           CustomElevatedButton(
             text: "회원가입",
             onPressed: () {
-              if (_formkey.currentState!.validate()) {}
+              if (_formkey.currentState!.validate()) {
+                Get.to(() => LoginPage());
+              } else {
+                Get.snackbar("회원가입 시도", "회원가입 실패");
+              }
             },
           ),
         ],
