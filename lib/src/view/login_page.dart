@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
@@ -62,6 +63,7 @@ class LoginPage extends GetView<UserController> {
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
                     controller.fetchData();
+                    Get.to(() => const App());
                   } else {
                     Get.snackbar("로그인 시도", "로그인 실패");
                   }
