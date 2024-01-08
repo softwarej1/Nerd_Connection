@@ -15,6 +15,9 @@ class HomeController extends GetxController {
   GlobalKey calendarHeaderKey = GlobalKey();
   Rx<Size> calendarHeaderSize = Size.zero.obs;
 
+  final TextEditingController _name = TextEditingController();
+  TextEditingController get name => _name;
+
   //calendar card
   RxBool isDateSelected = false.obs;
   Rx<DateTime?> selectedDay = Rx<DateTime?>(null);
@@ -82,5 +85,22 @@ class HomeController extends GetxController {
     if (selectedDay != null) {
       isDateSelected.value = true;
     }
+  }
+
+  XFile? file;
+  late double screenHeight = 0.0;
+
+  void initScreenWidth(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
+  }
+
+  Future<void> pickImageV02() async {
+    ImagePicker().pickImage(source: ImageSource.gallery).then(
+      (image) {
+        if (image != null) {
+          file = image;
+        }
+      },
+    );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 import 'package:flutter_getx_palette_diary/src/widget/custom_elevatedbutton.dart';
@@ -50,20 +49,20 @@ class LoginPage extends GetView<UserController> {
                 controller: controller.id,
                 hint: "이메일",
                 validator: (value) =>
-                    ValidatorUtil.validateEmail(controller.id.text),
+                    ValidatorUtil.validateEmail(controller.id.value.text),
               ),
               CustomTextField(
                 controller: controller.password,
                 hint: "비밀번호",
-                validator: (value) =>
-                    ValidatorUtil.validatePassword(controller.password.text),
+                validator: (value) => ValidatorUtil.validatePassword(
+                    controller.password.value.text),
               ),
               CustomElevatedButton(
                 text: "로그인",
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
                     controller.fetchData();
-                    Get.to(() => const App());
+                    controller.moveToApp();
                   } else {
                     Get.snackbar("로그인 시도", "로그인 실패");
                   }

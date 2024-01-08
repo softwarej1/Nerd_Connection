@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
@@ -10,21 +12,19 @@ class WritePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        appBar: AppBar(
-          title: const Text('글쓰기'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Get.to(() => const Home());
-                },
-                icon: const Icon(Icons.check))
-          ],
-        ),
-        body: _body(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('글쓰기'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => const Home());
+              },
+              icon: const Icon(Icons.check))
+        ],
       ),
+      body: _body(),
     );
   }
 
@@ -32,44 +32,37 @@ class WritePage extends GetView<HomeController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // _image(),
+          _image(),
           _text(),
         ],
       ),
     );
   }
 
-  // Widget _image() {
-  //   return (controller.writeSelectedImage != null)
-  //       ? SizedBox(
-  //           height: 200,
-  //           width: Get.size.width,
-  //           child: AssetEntityImage(
-  //             controller.writeSelectedImage!,
-  //             isOriginal: false,
-  //             fit: BoxFit.contain,
-  //           ),
-  //         )
-  //       : Padding(
-  //           padding: const EdgeInsets.all(16.0),
-  //           child: InkWell(
-  //             onTap: () {},
-  //             child: Container(
-  //               width: Get.size.width,
-  //               height: 250,
-  //               color: Colors.grey,
-  //               child: const Icon(
-  //                 Icons.photo,
-  //                 size: 44,
-  //               ),
-  //             ),
-  //           ),
-  //         );
-  // }
+  Widget _image() {
+    return GestureDetector(
+      onTap: controller.pickImageV02,
+      child: Container(
+        color: Colors.grey,
+        height: 100,
+        width: 100,
+        child: (controller.file != null)
+            ? Image.file(
+                File(controller.file!.path),
+                fit: BoxFit.cover,
+              )
+            : const Icon(
+                Icons.image,
+                size: 50,
+                color: Colors.white,
+              ),
+      ),
+    );
+  }
 
   Widget _text() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
       child: CustomTextField(
         hint: '코멘트를 입력하세요.',
         validator: ValidatorUtil.validateContent,
