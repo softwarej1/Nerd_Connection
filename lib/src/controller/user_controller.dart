@@ -3,7 +3,6 @@ import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/binding/signup_binding.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:flutter_getx_palette_diary/src/repository/user_repository.dart';
-import 'package:flutter_getx_palette_diary/src/view/home_page.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup_page.dart';
 import 'package:get/get.dart';
 
@@ -32,14 +31,8 @@ class UserController extends GetxController {
     };
 
     repository.loginApi(user).then((user) {
-      if (user != null) {
-        _users.value = user;
-        Get.to(() => const Home());
-      } else {
-        print('Login failed');
-      }
-    }).catchError((error) {
-      print('Error');
+      _users.value = user;
+      Get.to(() => SignUpPage());
     });
   }
 
