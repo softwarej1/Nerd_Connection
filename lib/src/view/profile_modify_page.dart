@@ -2,14 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileModify extends GetView<HomeController> {
   @override
   final HomeController controller;
   ProfileModify(this.controller, {super.key});
 
-  final Rx<File?> _selectImageFile = Rx<File?>(null);
   OverlayEntry? _overlayEntry;
 
   @override
@@ -138,7 +136,7 @@ class ProfileModify extends GetView<HomeController> {
             ),
           ),
           GestureDetector(
-            onTap: _removeOverlay, // 다른 곳을 터치하면 _removeOverlay 함수를 호출
+            onTap: controller.removeOverlay, // 다른 곳을 터치하면 _removeOverlay 함수를 호출
             behavior: HitTestBehavior.translucent, // 투명 영역 탭 감지
           ),
           Positioned(
@@ -187,8 +185,8 @@ class ProfileModify extends GetView<HomeController> {
                         height: 23.0, // 원하는 높이로 설정
                         child: InkWell(
                           onTap: () {
-                            _selectImage();
-                            _removeOverlay();
+                            controller.selectImage();
+                            controller.removeOverlay();
                           },
                           child: const Center(
                             child: Text(
@@ -209,7 +207,7 @@ class ProfileModify extends GetView<HomeController> {
                         height: 23.0,
                         child: InkWell(
                           onTap: () async {
-                            await _captureImage();
+                            await controller.captureImage();
                           },
                           child: const Center(
                             child: Text(
@@ -229,7 +227,7 @@ class ProfileModify extends GetView<HomeController> {
                       child: SizedBox(
                         height: 35.0, // 원하는 높이로 설정
                         child: InkWell(
-                          onTap: _removeOverlay,
+                          onTap: controller.removeOverlay,
                           child: const Center(
                             child: Text(
                               '기존 이미지로 변경',
@@ -250,32 +248,6 @@ class ProfileModify extends GetView<HomeController> {
     );
     if (_overlayEntry != null) {
       Overlay.of(context).insert(_overlayEntry!);
-    }
-  }
-
-  void _removeOverlay() {
-    // 다른 곳 누르면 오버레이 종료
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
-
-  _captureImage() async {
-    // 사진찍기
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.camera);
-
-    if (image != null) {
-      _selectImageFile.value = File(image.path);
-    }
-  }
-
-  _selectImage() async {
-    // 갤러리에서 선택
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      _selectImageFile.value = File(image.path);
     }
   }
 }
