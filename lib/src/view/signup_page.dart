@@ -7,7 +7,7 @@ import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
 class SignUpPage extends GetView<UserController> {
-  final _formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   SignUpPage({super.key});
 
