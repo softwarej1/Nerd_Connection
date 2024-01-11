@@ -14,7 +14,7 @@ class UserRepository {
         if (response.statusCode == 200) {
           return User.fromJson(response.data);
         } else {
-          return null;
+          return User(id: '', password: '');
         }
       });
     } catch (e) {
