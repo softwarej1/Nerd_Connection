@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_getx_palette_diary/src/view/profile_modify.dart';
+import 'package:flutter_getx_palette_diary/src/view/profile_modify_page.dart';
 import 'package:flutter_getx_palette_diary/src/view/write_page.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -102,5 +102,35 @@ class HomeController extends GetxController {
         }
       },
     );
+  }
+
+  // 오버레이 관련 메소드
+  OverlayEntry? _overlayEntry;
+  final Rx<File?> _selectImageFile = Rx<File?>(null);
+
+  // 다른 곳을 누르면 오버레이 종료
+  void removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  captureImage() async {
+    // 사진찍기
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.camera);
+
+    if (image != null) {
+      _selectImageFile.value = File(image.path);
+    }
+  }
+
+  selectImage() async {
+    // 갤러리에서 선택
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      _selectImageFile.value = File(image.path);
+    }
   }
 }
