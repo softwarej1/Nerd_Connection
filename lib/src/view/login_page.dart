@@ -62,7 +62,6 @@ class LoginPage extends GetView<UserController> {
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
                     controller.fetchData();
-                    controller.moveToApp();
                   } else {
                     Get.snackbar("로그인 시도", "로그인 실패");
                   }

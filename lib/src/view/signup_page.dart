@@ -74,7 +74,7 @@ class SignUpPage extends GetView<UserController> {
             text: "회원가입",
             onPressed: () {
               if (_formkey.currentState!.validate()) {
-                Get.to(() => LoginPage());
+                controller.signupFetchData;
               } else {
                 Get.snackbar("회원가입 시도", "회원가입 실패");
               }
