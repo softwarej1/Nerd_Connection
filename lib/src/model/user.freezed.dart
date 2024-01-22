@@ -23,6 +23,9 @@ mixin _$User {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
+  String? get signupId => throw _privateConstructorUsedError;
+  String? get signupPassword => throw _privateConstructorUsedError;
+  String? get confirmPassword => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +37,13 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String? id, String? name, String? password});
+  $Res call(
+      {String? id,
+      String? name,
+      String? password,
+      String? signupId,
+      String? signupPassword,
+      String? confirmPassword});
 }
 
 /// @nodoc
@@ -53,6 +62,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? name = freezed,
     Object? password = freezed,
+    Object? signupId = freezed,
+    Object? signupPassword = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -67,6 +79,18 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      signupId: freezed == signupId
+          ? _value.signupId
+          : signupId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signupPassword: freezed == signupPassword
+          ? _value.signupPassword
+          : signupPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      confirmPassword: freezed == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -78,7 +102,13 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? name, String? password});
+  $Res call(
+      {String? id,
+      String? name,
+      String? password,
+      String? signupId,
+      String? signupPassword,
+      String? confirmPassword});
 }
 
 /// @nodoc
@@ -94,6 +124,9 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? password = freezed,
+    Object? signupId = freezed,
+    Object? signupPassword = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_$UserImpl(
       id: freezed == id
@@ -108,6 +141,18 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      signupId: freezed == signupId
+          ? _value.signupId
+          : signupId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signupPassword: freezed == signupPassword
+          ? _value.signupPassword
+          : signupPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      confirmPassword: freezed == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -115,7 +160,13 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  _$UserImpl({required this.id, required this.name, required this.password});
+  _$UserImpl(
+      {required this.id,
+      required this.name,
+      required this.password,
+      required this.signupId,
+      required this.signupPassword,
+      required this.confirmPassword});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -126,10 +177,16 @@ class _$UserImpl implements _User {
   final String? name;
   @override
   final String? password;
+  @override
+  final String? signupId;
+  @override
+  final String? signupPassword;
+  @override
+  final String? confirmPassword;
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, password: $password)';
+    return 'User(id: $id, name: $name, password: $password, signupId: $signupId, signupPassword: $signupPassword, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -140,12 +197,19 @@ class _$UserImpl implements _User {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.signupId, signupId) ||
+                other.signupId == signupId) &&
+            (identical(other.signupPassword, signupPassword) ||
+                other.signupPassword == signupPassword) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, password);
+  int get hashCode => Object.hash(runtimeType, id, name, password, signupId,
+      signupPassword, confirmPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +229,10 @@ abstract class _User implements User {
   factory _User(
       {required final String? id,
       required final String? name,
-      required final String? password}) = _$UserImpl;
+      required final String? password,
+      required final String? signupId,
+      required final String? signupPassword,
+      required final String? confirmPassword}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -175,6 +242,12 @@ abstract class _User implements User {
   String? get name;
   @override
   String? get password;
+  @override
+  String? get signupId;
+  @override
+  String? get signupPassword;
+  @override
+  String? get confirmPassword;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

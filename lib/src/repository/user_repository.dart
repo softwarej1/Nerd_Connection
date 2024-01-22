@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:flutter_getx_palette_diary/src/utils/api_url.dart';
+import 'package:get/get.dart';
 
 class UserRepository {
   final dio = Dio();
@@ -45,26 +46,29 @@ class UserRepository {
     }
   }
 
-  Future<User?> joinApi(Map<String, dynamic> json) async {
+  Future<User?> signupApi(Map<String, dynamic> json) async {
     try {
       print(json);
-      return dio.post(ApiUrls.joinUrl, data: json).then((response) {
-        print(response.statusCode);
-        print(response.data);
-        if (response.statusCode == 200) {
-          return User.fromJson(response.data);
-        } else {
-          return null;
-        }
-      });
+      // return dio.post(ApiUrls.signupUrl, data: json).then((response) {
+      final response = await dio.post(ApiUrls.signupUrl, data: json);
+
+      print(response.statusCode);
+
+      print(response.data);
+      if (response.statusCode == 201) {
+      } else {
+        return null;
+      }
     } catch (e) {
+      Get.snackbar("회원가입 실패", "아이디가 중복되었습니다.");
+
       throw Exception();
     }
   }
 
-  Future<void> putJoins(Map<String, dynamic> json) async {
+  Future<void> putSignups(Map<String, dynamic> json) async {
     try {
-      dio.put(ApiUrls.joinUrl, data: json).then((response) {
+      dio.put(ApiUrls.signupUrl, data: json).then((response) {
         print(response.statusCode);
         if (response.statusCode == 201) {
         } else {

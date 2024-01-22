@@ -3,6 +3,7 @@ import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:flutter_getx_palette_diary/src/repository/user_repository.dart';
+import 'package:flutter_getx_palette_diary/src/view/login_page.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup_page.dart';
 import 'package:get/get.dart';
 
@@ -62,23 +63,21 @@ class UserController extends GetxController {
       'id': signupId.text.toString(),
       'name': name.text.toString(),
       'password': signupPassword.text.toString(),
-      'confirmpassword': confirmPassword.text.toString(),
     };
 
-    repository.joinApi(user).then((user) {
+    repository.signupApi(user).then((user) {
       _users.value = user;
-      moveToApp();
+      moveToLogin();
     });
   }
 
   void signupPutData() {
-    final join = {
+    final signup = {
       'id': _signupId.value.text,
       'name': _name.value.text,
       'password': _signupPassword.value.text.toString(),
-      'confirmpassword': _confirmPassword.value.text.toString()
     };
-    repository.putJoins(join);
+    repository.putSignups(signup);
   }
 
 // 화면 크기별 위젯 능동적 조정
@@ -92,7 +91,12 @@ class UserController extends GetxController {
 
 // SignUp view 이동
   void moveToRegister() {
-    Get.to(() => SignUpPage());
+    Get.to(() => SignUpPage(), binding: InitBinding());
+  }
+
+  // Login view 이동
+  void moveToLogin() {
+    Get.to(() => LoginPage(), binding: InitBinding());
   }
 
 // App.dart 화면으로 이동

@@ -57,12 +57,12 @@ class SignUpPage extends GetView<UserController> {
           CustomTextField(
             hint: "이메일",
             validator: ValidatorUtil.validateEmail,
-            controller: controller.id,
+            controller: controller.signupId,
           ),
           CustomTextField(
             hint: "비밀번호",
             validator: ValidatorUtil.validatePassword,
-            controller: controller.password,
+            controller: controller.signupPassword,
           ),
           CustomTextField(
             hint: "비밀번호 확인",
@@ -74,7 +74,7 @@ class SignUpPage extends GetView<UserController> {
             text: "회원가입",
             onPressed: () {
               if (_formkey.currentState!.validate()) {
-                controller.signupFetchData;
+                controller.signupFetchData();
               } else {
                 Get.snackbar("회원가입 시도", "회원가입 실패");
               }
