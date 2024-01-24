@@ -50,7 +50,7 @@ class App extends GetView<BottomNavController> {
   Widget _body() {
     return IndexedStack(
       index: controller.index,
-      children: const [
+      children: [
         Home(),
         MyPage(),
         Profile(),

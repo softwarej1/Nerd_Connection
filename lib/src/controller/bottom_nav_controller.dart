@@ -20,8 +20,8 @@ class BottomNavController extends GetxController {
       case Page.UPLOAD:
         moveToPage(value);
 
-        UserController controller = Get.find(); // Get.find()로 컨트롤러에 접근
-        controller.myinfoFetchData(); // UPLOAD 페이지에서는 myInfo 메소드 실행
+        // UserController controller = Get.find(); // Get.find()로 컨트롤러에 접근
+        // controller.myinfoFetchData(); // UPLOAD 페이지에서는 myInfo 메소드 실행
         break;
     }
   }

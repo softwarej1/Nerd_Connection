@@ -9,14 +9,13 @@ class UserRepository {
 
   Future<User?> loginApi(Map<String, dynamic> json) async {
     try {
-      print(json);
       return dio.post(ApiUrls.loginUrl, data: json).then((response) {
-        print(response.statusCode);
-        print(response.data);
+        // print(response.statusCode);
+        // print(response.data);
         if (response.statusCode == 200) {
           String? accessToken = response.data['accessToken'];
           GetStorage().write('accessToken', accessToken);
-          // print("저장한 토큰 : $accessToken");
+          print("저장한 토큰 : $accessToken");
           return User.fromJson(response.data);
         } else if (response.statusCode == 400) {
           final errorMessage = response.data['error'];
@@ -38,7 +37,7 @@ class UserRepository {
   Future<void> putUsers(Map<String, dynamic> json) async {
     try {
       dio.put(ApiUrls.loginUrl, data: json).then((response) {
-        print(response.statusCode);
+        // print(response.statusCode);
         if (response.statusCode == 201) {
         } else {
           // exception
@@ -52,13 +51,13 @@ class UserRepository {
 
   Future<User?> signupApi(Map<String, dynamic> json) async {
     try {
-      print(json);
+      //print(json);
       // return dio.post(ApiUrls.signupUrl, data: json).then((response) {
       final response = await dio.post(ApiUrls.signupUrl, data: json);
 
-      print(response.statusCode);
+      // print(response.statusCode);
 
-      print(response.data);
+      // print(response.data);
       if (response.statusCode == 201) {
       } else {
         return null;
@@ -73,7 +72,7 @@ class UserRepository {
   Future<void> putSignups(Map<String, dynamic> json) async {
     try {
       dio.put(ApiUrls.signupUrl, data: json).then((response) {
-        print(response.statusCode);
+        //print(response.statusCode);
         if (response.statusCode == 201) {
         } else {
           // exception
@@ -87,7 +86,9 @@ class UserRepository {
 
   Future<User?> myinfoApi() async {
     try {
+      print(2);
       String? accessToken = GetStorage().read('accessToken');
+      print(accessToken);
       dio.options.headers = {'Authorization': 'Bearer $accessToken'};
       final response = await dio.get(ApiUrls.myinfoUrl);
 
