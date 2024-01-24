@@ -45,6 +45,7 @@ dependencies:
   dio: ^5.4.0
   freezed_annotation: ^2.4.1 # 추가
   freezed: ^2.4.5
+  get_storage: ^2.1.1
   
   
  

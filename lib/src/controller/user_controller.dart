@@ -3,11 +3,16 @@ import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:flutter_getx_palette_diary/src/repository/user_repository.dart';
+import 'package:flutter_getx_palette_diary/src/view/login_page.dart';
+import 'package:flutter_getx_palette_diary/src/view/profile_modify.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup_page.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class UserController extends GetxController {
   final Rxn<User> _users = Rxn<User>();
+
+  var profileImagePath = ''.obs;
 
   final TextEditingController _name = TextEditingController();
   final TextEditingController _id = TextEditingController();
@@ -62,23 +67,63 @@ class UserController extends GetxController {
       'id': signupId.text.toString(),
       'name': name.text.toString(),
       'password': signupPassword.text.toString(),
-      'confirmpassword': confirmPassword.text.toString(),
     };
 
-    repository.joinApi(user).then((user) {
+    repository.signupApi(user).then((user) {
       _users.value = user;
-      moveToApp();
+      moveToLogin();
     });
   }
 
   void signupPutData() {
-    final join = {
+    final signup = {
       'id': _signupId.value.text,
       'name': _name.value.text,
       'password': _signupPassword.value.text.toString(),
-      'confirmpassword': _confirmPassword.value.text.toString()
     };
-    repository.putJoins(join);
+    repository.putSignups(signup);
+  }
+
+  Future<User?> myinfoFetchData() async {
+    try {
+      // repository.myinfoApi()가 Future<User?>를 반환하므로 await을 사용하여 비동기 호출
+      repository.myinfoApi().then((user) async {
+        await GetStorage().write('name', user?.name);
+        await GetStorage().write('id', user?.id);
+
+        _users.value = user;
+
+        print(user);
+
+        if (user != null) {
+          print("user : $user");
+          _users.value = user;
+          String? id = user.id ?? '';
+          String? name = user.name ?? '';
+
+          _id.text = user.id ?? '';
+          _name.text = user.name ?? '';
+
+          return user;
+        } else {
+          // 예외 처리: user가 null인 경우
+          print('User 정보를 가져오는 데 문제가 발생했습니다.');
+          return null;
+        }
+      });
+    } catch (e) {
+      // Dio 오류 또는 다른 예외 처리
+      print('User 정보를 가져오는 도중 오류가 발생했습니다: $e');
+      return null;
+    }
+  }
+
+  void myinfoPutData() {
+    final myinfo = {
+      'id': _id.value.text,
+      'name': _name.value.text,
+    };
+    repository.putMyinfos(myinfo);
   }
 
 // 화면 크기별 위젯 능동적 조정
@@ -90,13 +135,34 @@ class UserController extends GetxController {
     screenHeight = MediaQuery.of(context).size.height;
   }
 
+// 개인정보 view로 이동
+
 // SignUp view 이동
   void moveToRegister() {
-    Get.to(() => SignUpPage());
+    Get.to(() => SignUpPage(), binding: InitBinding());
+  }
+
+  // void objectSeparation() {
+
+  // }
+
+  // Login view 이동
+  void moveToLogin() {
+    Get.to(() => LoginPage(), binding: InitBinding());
   }
 
 // App.dart 화면으로 이동
   void moveToApp() {
     Get.to(() => const App(), binding: InitBinding());
   }
+
+  String? readName() {
+    return GetStorage().read('name');
+  }
+
+  String? readId() {
+    return GetStorage().read('id');
+  }
+
+  bool get isProfileImageSet => profileImagePath.value.isNotEmpty;
 }

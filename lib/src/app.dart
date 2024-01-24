@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/bottom_nav_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 import 'package:flutter_getx_palette_diary/src/view/home_page.dart';
 import 'package:flutter_getx_palette_diary/src/view/my_page.dart';
 import 'package:flutter_getx_palette_diary/src/view/profile.dart';
@@ -37,11 +38,11 @@ class App extends GetView<BottomNavController> {
         BottomNavigationBarItem(
             icon: ImageData(path: ImagePath.noteTextOff),
             activeIcon: ImageData(path: ImagePath.noteTextOn),
-            label: 'search'),
+            label: 'feed'),
         BottomNavigationBarItem(
             icon: ImageData(path: ImagePath.userAltOff),
             activeIcon: ImageData(path: ImagePath.userAltOn),
-            label: 'upload'),
+            label: 'myinfo'),
       ],
     );
   }
@@ -49,7 +50,7 @@ class App extends GetView<BottomNavController> {
   Widget _body() {
     return IndexedStack(
       index: controller.index,
-      children: const [
+      children: [
         Home(),
         MyPage(),
         Profile(),

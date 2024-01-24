@@ -1,9 +1,13 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
+import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-class Profile extends GetView<HomeController> {
+class Profile extends GetView<UserController> {
   const Profile({super.key});
 
   @override
@@ -81,10 +85,11 @@ class Profile extends GetView<HomeController> {
   }
 
   Widget _miniinfo() {
-    return const Column(
+    controller.myinfoFetchData();
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(bottom: 15.0),
           child: Text(
             'Information',
@@ -94,48 +99,51 @@ class Profile extends GetView<HomeController> {
         Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0),
           child: Text(
-            '▪ 이름 : 유저 이름',
+            '▪ 이름 :  ${controller.readName()}',
             style: TextStyle(fontSize: 20.0),
           ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 15.0),
           child: Text(
-            '▪ Email : email@email.com',
+            '▪ Email : ${controller.readId()}',
             style: TextStyle(fontSize: 20.0),
           ),
         ),
       ],
     );
+    // } else {
+    //   return Text('사용자 정보를 불러올 수 없습니다.');
+    // }
   }
+}
+// }
 
-  Widget _profileInformation() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            '내 정보',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
-            child: GestureDetector(
-              onTap: () {
-                controller.pfmgo(controller);
-              },
-              child: const Text(
-                '내 프로필 수정하기',
-                style: TextStyle(fontSize: 15.0, color: Colors.black),
-              ),
+Widget _profileInformation() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          '내 정보',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+          child: GestureDetector(
+            onTap: () {
+              // controller.pfmgo(controller);
+            },
+            child: const Text(
+              '내 프로필 수정하기',
+              style: TextStyle(fontSize: 15.0, color: Colors.black),
             ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
 }
 
 Widget _driver() {
