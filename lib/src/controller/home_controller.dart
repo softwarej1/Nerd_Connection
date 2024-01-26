@@ -61,7 +61,7 @@ class HomeController extends GetxController {
 
 //Write() 이동
   void handleFabPress() {
-    Get.to(() => const WritePage());
+    Get.to(() => WritePage());
   }
 
 //갤러리 이동, 선택
