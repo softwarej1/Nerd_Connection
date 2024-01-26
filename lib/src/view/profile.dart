@@ -1,11 +1,10 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
+import 'package:flutter_getx_palette_diary/src/app.dart';
+
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
-import 'package:flutter_getx_palette_diary/src/model/user.dart';
+
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class Profile extends GetView<UserController> {
   const Profile({super.key});
@@ -97,17 +96,17 @@ class Profile extends GetView<UserController> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0),
+          padding: const EdgeInsets.symmetric(vertical: 15.0),
           child: Text(
             '▪ 이름 :  ${controller.readName()}',
-            style: TextStyle(fontSize: 20.0),
+            style: const TextStyle(fontSize: 20.0),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 15.0),
+          padding: const EdgeInsets.only(top: 15.0),
           child: Text(
             '▪ Email : ${controller.readId()}',
-            style: TextStyle(fontSize: 20.0),
+            style: const TextStyle(fontSize: 20.0),
           ),
         ),
       ],
