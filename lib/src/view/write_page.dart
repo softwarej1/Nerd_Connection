@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/app.dart';
-import 'package:flutter_getx_palette_diary/src/controller/home_controller.dart';
+import 'package:flutter_getx_palette_diary/src/controller/post_controller.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
 import 'package:get/get.dart';
 
-class WritePage extends GetView<HomeController> {
+class WritePage extends GetView<PostController> {
   RxBool isChecked = false.obs;
   WritePage({super.key});
 
@@ -21,6 +21,7 @@ class WritePage extends GetView<HomeController> {
         actions: [
           IconButton(
               onPressed: () {
+                controller.postfetchData();
                 Get.to(() => const App());
               },
               icon: const Icon(Icons.check))
@@ -77,14 +78,14 @@ class WritePage extends GetView<HomeController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('이 글을 다른 사람과 공유하겠습니까? ', style: TextStyle(fontSize: 16)),
+        const Text('이 글을 다른 사람과 공유하겠습니까? ', style: TextStyle(fontSize: 16)),
         IconButton(
           onPressed: () {
             isChecked.toggle();
           },
           icon: Obx(() => isChecked.value
-              ? Icon(Icons.check_box_outlined)
-              : Icon(Icons.check_box_outline_blank)),
+              ? const Icon(Icons.check_box_outlined)
+              : const Icon(Icons.check_box_outline_blank)),
         ),
       ],
     );
