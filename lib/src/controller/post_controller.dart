@@ -29,23 +29,19 @@ class PostController extends GetxController {
     );
   }
 
-  void postfetchData() {
-    final post = {
-      'content': content.text.toString(),
-    };
-
-    repository.writeApi(file).then((post) {
-      if (post != null) {
-        _posts.value = post;
-      } else {
-        Get.snackbar(
-          "글쓰기 실패",
-          ".",
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 3),
-        );
-      }
-    });
+  Future<Post?> postfetchData() async {
+    final post = await repository.writeApi(file);
+    if (post != null) {
+      _posts.value = post;
+      return post;
+    } else {
+      Get.snackbar(
+        "글쓰기 실패",
+        ".",
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 3),
+      );
+    }
   }
 
   void postputData() {

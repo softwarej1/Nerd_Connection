@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/app.dart';
 import 'package:flutter_getx_palette_diary/src/controller/post_controller.dart';
+import 'package:flutter_getx_palette_diary/src/model/post.dart';
 import 'package:flutter_getx_palette_diary/src/utils/validator_util.dart';
 
 import 'package:flutter_getx_palette_diary/src/widget/custom_textfield.dart';
@@ -20,9 +20,12 @@ class WritePage extends GetView<PostController> {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {
-                controller.postfetchData();
-                Get.to(() => const App());
+              onPressed: () async {
+                Post? post = await controller.postfetchData();
+                print(post);
+
+                //Get.to(() => const App());
+                Get.back();
               },
               icon: const Icon(Icons.check))
         ],

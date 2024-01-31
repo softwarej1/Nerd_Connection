@@ -1,9 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_palette_diary/src/app.dart';
-
 import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
-
 import 'package:get/get.dart';
 
 class Profile extends GetView<UserController> {
@@ -40,44 +37,46 @@ class Profile extends GetView<UserController> {
   Widget _profileBox(BuildContext context) {
     double size = MediaQuery.of(context).size.width * 0.25;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.black, width: 2.0),
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        width: double.infinity,
-        height: 200.0,
-        child: Row(
-          children: <Widget>[
-            Obx(() {
-              return ClipOval(
-                child: controller.isProfileImageSet
-                    ? Image.file(
-                        File(controller.profileImagePath.value),
-                        width: size,
-                        height: size,
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        color: Colors.blue,
-                        width: size,
-                        height: size,
-                        child: const Center(
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.black, width: 2.0),
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          width: double.infinity,
+          height: 200.0,
+          child: Row(
+            children: <Widget>[
+              Obx(() {
+                return ClipOval(
+                  child: controller.isProfileImageSet
+                      ? Image.file(
+                          File(controller.profileImagePath.value),
+                          width: size,
+                          height: size,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          color: Colors.blue,
+                          width: size,
+                          height: size,
+                          child: const Center(
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-              );
-            }),
-            const SizedBox(width: 20.0),
-            _miniinfo(),
-          ],
+                );
+              }),
+              const SizedBox(width: 14.0),
+              _miniinfo(),
+            ],
+          ),
         ),
       ),
     );
@@ -85,31 +84,33 @@ class Profile extends GetView<UserController> {
 
   Widget _miniinfo() {
     controller.myinfoFetchData();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.only(bottom: 15.0),
-          child: Text(
-            'Information',
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 15.0),
+            child: Text(
+              'Information',
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0),
-          child: Text(
-            '▪ 이름 :  ${controller.readName()}',
-            style: const TextStyle(fontSize: 20.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15.0),
+            child: Text(
+              '▪ 이름 :  ${controller.readName()}',
+              style: const TextStyle(fontSize: 20.0),
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: Text(
-            '▪ Email : ${controller.readId()}',
-            style: const TextStyle(fontSize: 20.0),
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Text(
+              '▪ Email : ${controller.readId()}',
+              style: const TextStyle(fontSize: 20.0),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
     // } else {
     //   return Text('사용자 정보를 불러올 수 없습니다.');
@@ -119,28 +120,31 @@ class Profile extends GetView<UserController> {
 // }
 
 Widget _profileInformation() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          '내 정보',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
-          child: GestureDetector(
-            onTap: () {
-              // controller.pfmgo(controller);
-            },
-            child: const Text(
-              '내 프로필 수정하기',
-              style: TextStyle(fontSize: 15.0, color: Colors.black),
+  return SingleChildScrollView(
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            '내 정보',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                // controller.pfmgo(controller);
+              },
+              child: const Text(
+                '내 프로필 수정하기',
+                style: TextStyle(fontSize: 15.0, color: Colors.black),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

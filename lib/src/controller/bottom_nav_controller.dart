@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter_getx_palette_diary/src/controller/user_controller.dart';
 import 'package:get/get.dart';
 
 enum Page { HOME, SEARCH, UPLOAD }
