@@ -7,17 +7,25 @@ import 'package:image_picker/image_picker.dart';
 
 class PostController extends GetxController {
   final Rxn<Post> _posts = Rxn<Post>();
+  final Rxn<Post> _contents = Rxn<Post>();
 
   XFile? file;
 
   final TextEditingController _content = TextEditingController();
+  final RxBool _share_check = false.obs;
+
+  TextEditingController get content => _content;
+  RxBool get shareCheck => _share_check;
+
+  // 체크박스 상태를 업데이트하는 함수
+  void updateCheckbox(bool value) {
+    _share_check.value = value;
+  }
 
   final PostRepository repository;
   PostController({
     required this.repository,
   });
-
-  TextEditingController get content => _content;
 
   Future<void> pickImageV02() async {
     ImagePicker().pickImage(source: ImageSource.gallery).then(
@@ -49,5 +57,23 @@ class PostController extends GetxController {
       'content': _content.value.text,
     };
     repository.putPosts(post);
+  }
+
+  void contentFetchData(post) {
+    final content = {
+      'content': _content.value.text,
+      'photo_url': post.photo_url,
+      'share_check': _share_check.value,
+    };
+
+    repository.contentApi(content).then((content) {});
+  }
+
+  void contentPutData() {
+    final content = {
+      'content': _content.value.text,
+      'share_check': _share_check.value,
+    };
+    repository.putContents(content);
   }
 }

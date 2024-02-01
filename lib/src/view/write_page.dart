@@ -22,7 +22,9 @@ class WritePage extends GetView<PostController> {
           IconButton(
               onPressed: () async {
                 Post? post = await controller.postfetchData();
-                print(post);
+                print('사진 url 반환 성공');
+
+                controller.contentFetchData(post);
 
                 //Get.to(() => const App());
                 Get.back();
@@ -68,9 +70,10 @@ class WritePage extends GetView<PostController> {
   }
 
   Widget _text() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.all(16.0),
       child: CustomTextField(
+        controller: controller.content,
         hint: '코멘트를 입력하세요.',
         validator: ValidatorUtil.validateContent,
       ),
@@ -84,9 +87,9 @@ class WritePage extends GetView<PostController> {
         const Text('이 글을 다른 사람과 공유하겠습니까? ', style: TextStyle(fontSize: 16)),
         IconButton(
           onPressed: () {
-            isChecked.toggle();
+            controller.updateCheckbox(!controller.shareCheck.value);
           },
-          icon: Obx(() => isChecked.value
+          icon: Obx(() => controller.shareCheck.value
               ? const Icon(Icons.check_box_outlined)
               : const Icon(Icons.check_box_outline_blank)),
         ),
