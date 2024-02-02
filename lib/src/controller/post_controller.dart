@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_palette_diary/src/model/post.dart';
 
@@ -60,19 +62,28 @@ class PostController extends GetxController {
   }
 
   void contentFetchData(post) {
+    // print('_share_check.value: ${_share_check.value}'); // 디버깅 메시지 추가
+
     final content = {
       'content': _content.value.text,
       'photo_url': post.photo_url,
-      'share_check': _share_check.value,
+      'share_check': _share_check.value == true,
     };
 
-    repository.contentApi(content).then((content) {});
+    print(content);
+    print('content유형: ${content['content'].runtimeType}');
+    print('photo_url유형: ${content['photo_url'].runtimeType}');
+    print('share_check유형: ${content['share_check'].runtimeType}');
+
+    repository.contentApi(content);
   }
 
   void contentPutData() {
+    print('_share_check.value: ${_share_check.value}'); // 디버깅 메시지 추가
+
     final content = {
       'content': _content.value.text,
-      'share_check': _share_check.value,
+      'share_check': _share_check.value == true, // 문자열을 bool로 변환
     };
     repository.putContents(content);
   }
