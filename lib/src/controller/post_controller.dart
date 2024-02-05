@@ -70,11 +70,6 @@ class PostController extends GetxController {
       'share_check': _share_check.value == true,
     };
 
-    print(content);
-    print('content유형: ${content['content'].runtimeType}');
-    print('photo_url유형: ${content['photo_url'].runtimeType}');
-    print('share_check유형: ${content['share_check'].runtimeType}');
-
     repository.contentApi(content);
   }
 

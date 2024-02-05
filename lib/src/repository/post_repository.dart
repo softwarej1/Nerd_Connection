@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 
@@ -23,7 +24,8 @@ class PostRepository {
       dio.options.contentType = 'multipart/form-data';
 
       FormData formData = FormData.fromMap({
-        'file': await MultipartFile.fromFile(file!.path, filename: 'file.jpg')
+        'file': await MultipartFile.fromFile(file!.path,
+            filename: generateRandomFileName())
       });
       final response = await dio.post(ApiUrls.writeUrl, data: formData);
 
@@ -102,5 +104,10 @@ class PostRepository {
     } catch (e) {
       throw Exception();
     }
+  }
+
+  String generateRandomFileName() {
+    // 6자리의 난수를 생성하여 확장자를 붙여서 반환
+    return '${Random().nextInt(900000) + 100000}.jpg';
   }
 }
