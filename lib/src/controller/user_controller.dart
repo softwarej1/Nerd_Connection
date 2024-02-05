@@ -4,7 +4,6 @@ import 'package:flutter_getx_palette_diary/src/binding/init_binding.dart';
 import 'package:flutter_getx_palette_diary/src/model/user.dart';
 import 'package:flutter_getx_palette_diary/src/repository/user_repository.dart';
 import 'package:flutter_getx_palette_diary/src/view/login_page.dart';
-import 'package:flutter_getx_palette_diary/src/view/profile_modify.dart';
 import 'package:flutter_getx_palette_diary/src/view/signup_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
