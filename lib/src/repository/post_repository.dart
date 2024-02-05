@@ -27,7 +27,6 @@ class PostRepository {
       });
       final response = await dio.post(ApiUrls.writeUrl, data: formData);
 
-      // return dio.post(ApiUrls.writeUrl, data: formData).then((response) {
       if (response.statusCode == 201) {
         return Post.fromJson(response.data);
       } else if (response.statusCode == 400) {
@@ -37,10 +36,6 @@ class PostRepository {
       } else {
         throw Exception("글쓰기 오류");
       }
-      // }catchError((error) {
-      //   print("writeApi에서 Dio 오류: $error");
-      //   throw Exception("글쓰기 중 오류 발생");
-      // });
     } catch (e) {
       print("Error in loginApi: $e");
       throw Exception("글쓰기 중 오류 발생");
@@ -61,83 +56,34 @@ class PostRepository {
     }
   }
 
-  Future<Post?> contentApi(Map<String, dynamic> json1) async {
+  Future<Post?> contentApi(Map<String, dynamic> json) async {
     try {
-      dio.options.receiveDataWhenStatusError = true; // 오류 응답에 대한 데이터를 받도록 설정
-
-      dio.options.contentType = 'application/json'; // 수정: 멀티파트 형식을 JSON으로 변경
-
+      dio.options.contentType = 'application/json';
       String? accessToken = GetStorage().read('accessToken');
-
-      print(accessToken);
-
       dio.options.headers = {'Authorization': 'Bearer $accessToken'};
 
-      print('json1 유형: ${json1.runtimeType}');
-
-      print(json1);
-
-      // dio.put(ApiUrls.postUrl, data: json).then((response) {
-      final response = await dio.put(ApiUrls.postUrl, data: jsonEncode(json1));
+      final response = await dio.post(ApiUrls.postUrl, data: jsonEncode(json));
       print(response.statusCode);
 
       if (response.statusCode == 201) {
-        return Post.fromJson(response.data);
       } else {
         print("글쓰기 실패");
         print(response.data);
-      }
-      // throw Exception("글쓰기 오류");
-    } on DioException catch (error) {
-      // DioException 또는 다른 예외 처리
-      if (error.response != null) {
-        print('Dio Response error: ${error.response}');
-        // 상세한 응답 정보를 확인할 수 있습니다.
-        print('Status Code: ${error.response!.statusCode}');
-        print('Headers: ${error.response!.headers}');
-        print('Data: ${error.response!.data}');
-      } else {
-        print('Dio Connection error: $error');
+        return null;
       }
     } catch (error) {
+      // DioError인 경우
       if (error is DioError) {
-        print('Dio Error: ${error.message}');
+        // 에러 타입에 따라 처리
         if (error.response != null) {
           print('Response error: ${error.response}');
         } else {
           print('Connection error: $error');
         }
       } else {
-        print('Non-Dio Error: $error');
+        print('Non-DioError: $error');
       }
     }
-
-    //     dio.put(ApiUrls.postUrl, data: json).then((response) {
-    //       print(accessToken);
-
-    //       if (response.statusCode == 201) {
-    //         print("성공이용");
-    //       } else {
-    //         print("글쓰기 실패");
-    //         print(response.data);
-    //         //throw Exception("글쓰기 오류");
-    //       }
-    //     });
-    //   } catch (error) {
-    //     // DioError인 경우
-    //     if (error is DioError) {
-    //       // 에러 타입에 따라 처리
-    //       if (error.response != null) {
-    //         print('Response error: ${error.response}');
-    //       } else {
-    //         print('Connection error: $error');
-    //       }
-    //     } else {
-    //       // DioError가 아닌 경우에 대한 처리
-    //       print('Non-DioError: $error');
-    //     }
-    //   }
-    // }
   }
 
   Future<void> putContents(Map<String, dynamic> json) async {
