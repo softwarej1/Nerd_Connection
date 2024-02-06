@@ -46,6 +46,7 @@ class MyPage extends GetView<FeedController> {
           return Text('데이터 없음');
         } else {
           List<Feed> feeds = snapshot.data!;
+          print(feeds);
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
@@ -55,6 +56,10 @@ class MyPage extends GetView<FeedController> {
             itemBuilder: (context, index) {
               if (index < feeds.length) {
                 Feed feed = feeds[index];
+                if (index == feeds.length - 1) {
+                  print('111');
+                  print(feed.post_no);
+                }
                 return Container(
                   color: Colors.blueGrey,
                   child: Image.network(
